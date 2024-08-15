@@ -280,8 +280,9 @@ def lector_templog(directorio, plot=False):
         print('No se encuentra archivo templog.csv en el directorio:',directorio)
 
 
-#%% 135 kHz  kA/m SC
-dir_a= 'a  - 26 Junio'
+#%% (a) vs (c): 135 kHz  descong sin campo DC - distintas fechas  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+dir_a= 'a  - 26-Jun - 135 kHz'
 files_a_150 = glob(os.path.join(dir_a, '*150dA*'))
 files_a_100 = glob(os.path.join(dir_a, '*100dA*'))
 files_a_050 = glob(os.path.join(dir_a, '*050dA*'))
@@ -298,7 +299,7 @@ _,files_a_050_1,time_a_050_1,temp_a_050_1,_,_,_,_,_,_,_,_,SAR_a_050_1,tau_a_050_
 _,files_a_050_2,time_a_050_2,temp_a_050_2,_,_,_,_,_,_,_,_,SAR_a_050_2,tau_a_050_2,_ = lector_resultados(files_a_050[1])
 _,files_a_050_3,time_a_050_3,temp_a_050_3,_,_,_,_,_,_,_,_,SAR_a_050_3,tau_a_050_3,_ = lector_resultados(files_a_050[2])
 
-dir_c= 'c - 18 Julio'
+dir_c= 'c - 18-Jul - 135 kHz'
 files_c_150 = glob(os.path.join(dir_c, '*150dA*'))
 files_c_100 = glob(os.path.join(dir_c, '*100dA*'))
 files_c_050 = glob(os.path.join(dir_c, '*050dA*'))
@@ -315,8 +316,7 @@ _,files_c_050_1,time_c_050_1,temp_c_050_1,_,_,_,_,_,_,_,_,SAR_c_050_1,tau_c_050_
 _,files_c_050_2,time_c_050_2,temp_c_050_2,_,_,_,_,_,_,_,_,SAR_c_050_2,tau_c_050_2,_ = lector_resultados_2(files_c_050[1])
 _,files_c_050_3,time_c_050_3,temp_c_050_3,_,_,_,_,_,_,_,_,SAR_c_050_3,tau_c_050_3,_ = lector_resultados_2(files_c_050[2])
 
-
-#%% paso tau a ns
+#% paso tau a ns
 tau_a_150_1=tau_a_150_1*1e9
 tau_a_150_2=tau_a_150_2*1e9
 tau_a_150_3=tau_a_150_3*1e9
@@ -336,44 +336,98 @@ tau_c_100_3=tau_c_100_3*1e9
 tau_c_050_1=tau_c_050_1*1e9
 tau_c_050_2=tau_c_050_2*1e9
 tau_c_050_3=tau_c_050_3*1e9
+#%encuentro los maximos 
+tau_max_a_150_1=tau_a_150_1[np.nonzero(tau_a_150_1==max(tau_a_150_1))][0]
+tau_max_a_150_2=tau_a_150_2[np.nonzero(tau_a_150_2==max(tau_a_150_2))][0]
+tau_max_a_150_3=tau_a_150_3[np.nonzero(tau_a_150_3==max(tau_a_150_3))][0]
+tau_max_a_100_1=tau_a_100_1[np.nonzero(tau_a_100_1==max(tau_a_100_1))][0]
+tau_max_a_100_2=tau_a_100_2[np.nonzero(tau_a_100_2==max(tau_a_100_2))][0]
+tau_max_a_100_3=tau_a_100_3[np.nonzero(tau_a_100_3==max(tau_a_100_3))][0]
+tau_max_a_050_1=tau_a_050_1[np.nonzero(tau_a_050_1==max(tau_a_050_1))][0]
+tau_max_a_050_2=tau_a_050_2[np.nonzero(tau_a_050_2==max(tau_a_050_2))][0]
+tau_max_a_050_3=tau_a_050_3[np.nonzero(tau_a_050_3==max(tau_a_050_3))][0]
 
+temp_max_a_150_1=temp_a_150_1[np.nonzero(tau_a_150_1==max(tau_a_150_1))][0]
+temp_max_a_150_2=temp_a_150_2[np.nonzero(tau_a_150_2==max(tau_a_150_2))][0]
+temp_max_a_150_3=temp_a_150_3[np.nonzero(tau_a_150_3==max(tau_a_150_3))][0]
+temp_max_a_100_1=temp_a_100_1[np.nonzero(tau_a_100_1==max(tau_a_100_1))][0]
+temp_max_a_100_2=temp_a_100_2[np.nonzero(tau_a_100_2==max(tau_a_100_2))][0]
+temp_max_a_100_3=temp_a_100_3[np.nonzero(tau_a_100_3==max(tau_a_100_3))][0]
+temp_max_a_050_1=temp_a_050_1[np.nonzero(tau_a_050_1==max(tau_a_050_1))][0]
+temp_max_a_050_2=temp_a_050_2[np.nonzero(tau_a_050_2==max(tau_a_050_2))][0]
+temp_max_a_050_3=temp_a_050_3[np.nonzero(tau_a_050_3==max(tau_a_050_3))][0]
 
+tau_max_c_150_1=tau_c_150_1[np.nonzero(tau_c_150_1==max(tau_c_150_1))][0]
+tau_max_c_150_2=tau_c_150_2[np.nonzero(tau_c_150_2==max(tau_c_150_2))][0]
+tau_max_c_150_3=tau_c_150_3[np.nonzero(tau_c_150_3==max(tau_c_150_3))][0]
+tau_max_c_100_1=tau_c_100_1[np.nonzero(tau_c_100_1==max(tau_c_100_1))][0]
+tau_max_c_100_2=tau_c_100_2[np.nonzero(tau_c_100_2==max(tau_c_100_2))][0]
+tau_max_c_100_3=tau_c_100_3[np.nonzero(tau_c_100_3==max(tau_c_100_3))][0]
+tau_max_c_050_1=tau_c_050_1[np.nonzero(tau_c_050_1==max(tau_c_050_1))][0]
+tau_max_c_050_2=tau_c_050_2[np.nonzero(tau_c_050_2==max(tau_c_050_2))][0]
+tau_max_c_050_3=tau_c_050_3[np.nonzero(tau_c_050_3==max(tau_c_050_3))][0]
 
-#%%
-fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,8),constrained_layout=True,sharey='row',sharex='col')
-ax[0,0].plot(temp_a_150_1,tau_a_150_1,label='1')
-ax[0,0].plot(temp_a_150_2,tau_a_150_2,label='2')
-ax[0,0].plot(temp_a_150_3,tau_a_150_3,label='3')
+temp_max_c_150_1=temp_c_150_1[np.nonzero(tau_c_150_1==max(tau_c_150_1))][0]
+temp_max_c_150_2=temp_c_150_2[np.nonzero(tau_c_150_2==max(tau_c_150_2))][0]
+temp_max_c_150_3=temp_c_150_3[np.nonzero(tau_c_150_3==max(tau_c_150_3))][0]
+temp_max_c_100_1=temp_c_100_1[np.nonzero(tau_c_100_1==max(tau_c_100_1))][0]
+temp_max_c_100_2=temp_c_100_2[np.nonzero(tau_c_100_2==max(tau_c_100_2))][0]
+temp_max_c_100_3=temp_c_100_3[np.nonzero(tau_c_100_3==max(tau_c_100_3))][0]
+temp_max_c_050_1=temp_c_050_1[np.nonzero(tau_c_050_1==max(tau_c_050_1))][0]
+temp_max_c_050_2=temp_c_050_2[np.nonzero(tau_c_050_2==max(tau_c_050_2))][0]
+temp_max_c_050_3=temp_c_050_3[np.nonzero(tau_c_050_3==max(tau_c_050_3))][0]
 
-ax[0,1].plot(temp_c_150_1,tau_c_150_1,label='1')
-ax[0,1].plot(temp_c_150_2,tau_c_150_2,label='2')
-ax[0,1].plot(temp_c_150_3,tau_c_150_3,label='3')
+#%% Tau vs T
+fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+ax[0,0].plot(temp_a_150_1,tau_a_150_1)
+ax[0,0].plot(temp_a_150_2,tau_a_150_2)
+ax[0,0].plot(temp_a_150_3,tau_a_150_3)
+ax[0,0].scatter(temp_max_a_150_1,tau_max_a_150_1,marker='v',label=f'{tau_max_a_150_1:.1f} ns at {temp_max_a_150_1}°C')
+ax[0,0].scatter(temp_max_a_150_2,tau_max_a_150_2,marker='v',label=f'{tau_max_a_150_2:.1f} ns at {temp_max_a_150_2}°C')
+ax[0,0].scatter(temp_max_a_150_3,tau_max_a_150_3,marker='v',label=f'{tau_max_a_150_3:.1f} ns at {temp_max_a_150_3}°C')
 
-ax[1,0].plot(temp_a_100_1,tau_a_100_1,label='1')
-ax[1,0].plot(temp_a_100_2,tau_a_100_2,label='2')
-ax[1,0].plot(temp_a_100_3,tau_a_100_3,label='3')
+ax[0,1].plot(temp_c_150_1,tau_c_150_1)
+ax[0,1].plot(temp_c_150_2,tau_c_150_2)
+ax[0,1].plot(temp_c_150_3,tau_c_150_3)
+ax[0,1].scatter(temp_max_c_150_1,tau_max_c_150_1,marker='v',label=f'{tau_max_c_150_1:.1f} ns at {temp_max_c_150_1}°C')
+ax[0,1].scatter(temp_max_c_150_2,tau_max_c_150_2,marker='v',label=f'{tau_max_c_150_2:.1f} ns at {temp_max_c_150_2}°C')
+ax[0,1].scatter(temp_max_c_150_3,tau_max_c_150_3,marker='v',label=f'{tau_max_c_150_3:.1f} ns at {temp_max_c_150_3}°C')
 
-ax[1,1].plot(temp_c_100_1,tau_c_100_1,label='1')
-ax[1,1].plot(temp_c_100_2,tau_c_100_2,label='2')
-ax[1,1].plot(temp_c_100_3,tau_c_100_3,label='3')
+ax[1,0].plot(temp_a_100_1,tau_a_100_1)
+ax[1,0].plot(temp_a_100_2,tau_a_100_2)
+ax[1,0].plot(temp_a_100_3,tau_a_100_3)
+ax[1,0].scatter(temp_max_a_100_1,tau_max_a_100_1,marker='v',label=f'{tau_max_a_100_1:.1f} ns at {temp_max_a_100_1}°C')
+ax[1,0].scatter(temp_max_a_100_2,tau_max_a_100_2,marker='v',label=f'{tau_max_a_100_2:.1f} ns at {temp_max_a_100_2}°C')
+ax[1,0].scatter(temp_max_a_100_3,tau_max_a_100_3,marker='v',label=f'{tau_max_a_100_3:.1f} ns at {temp_max_a_100_3}°C')
 
-ax[2,0].plot(temp_a_050_1,tau_a_050_1,label='1')
-ax[2,0].plot(temp_a_050_2,tau_a_050_2,label='2')
-ax[2,0].plot(temp_a_050_3,tau_a_050_3,label='3')
+ax[1,1].plot(temp_c_100_1,tau_c_100_1)
+ax[1,1].plot(temp_c_100_2,tau_c_100_2)
+ax[1,1].plot(temp_c_100_3,tau_c_100_3)
+ax[1,1].scatter(temp_max_c_100_1,tau_max_c_100_1,marker='v',label=f'{tau_max_c_100_1:.1f} ns at {temp_max_c_100_1}°C')
+ax[1,1].scatter(temp_max_c_100_2,tau_max_c_100_2,marker='v',label=f'{tau_max_c_100_2:.1f} ns at {temp_max_c_100_2}°C')
+ax[1,1].scatter(temp_max_c_100_3,tau_max_c_100_3,marker='v',label=f'{tau_max_c_100_3:.1f} ns at {temp_max_c_100_3}°C')
 
-ax[2,1].plot(temp_c_050_1,tau_c_050_1,label='1')
-ax[2,1].plot(temp_c_050_2,tau_c_050_2,label='2')
-ax[2,1].plot(temp_c_050_3,tau_c_050_3,label='3')
+ax[2,0].plot(temp_a_050_1,tau_a_050_1,)
+ax[2,0].plot(temp_a_050_2,tau_a_050_2,)
+ax[2,0].plot(temp_a_050_3,tau_a_050_3,)
+ax[2,0].scatter(temp_max_a_050_1,tau_max_a_050_1,marker='v',label=f'{tau_max_a_050_1:.1f} ns at {temp_max_a_050_1}°C')
+ax[2,0].scatter(temp_max_a_050_2,tau_max_a_050_2,marker='v',label=f'{tau_max_a_050_2:.1f} ns at {temp_max_a_050_2}°C')
+ax[2,0].scatter(temp_max_a_050_3,tau_max_a_050_3,marker='v',label=f'{tau_max_a_050_3:.1f} ns at {temp_max_a_050_3}°C')
 
-for a in ax:#%% AJUSTES TAU 
+ax[2,1].plot(temp_c_050_1,tau_c_050_1,)
+ax[2,1].plot(temp_c_050_2,tau_c_050_2,)
+ax[2,1].plot(temp_c_050_3,tau_c_050_3,)
+ax[2,1].scatter(temp_max_c_050_1,tau_max_c_050_1,marker='v',label=f'{tau_max_c_050_1:.1f} ns at {temp_max_c_050_1}°C')
+ax[2,1].scatter(temp_max_c_050_2,tau_max_c_050_2,marker='v',label=f'{tau_max_c_050_2:.1f} ns at {temp_max_c_050_2}°C')
+ax[2,1].scatter(temp_max_c_050_3,tau_max_c_050_3,marker='v',label=f'{tau_max_c_050_3:.1f} ns at {temp_max_c_050_3}°C')
 
+for a in ax:
     for b in a:
         b.grid()
-        b.legend()
+        b.legend(title=r'$\tau_{max}$',fontsize=9)
+        b.set_xlabel('T (°C)')
 for a in ax:
-    a[0].set_ylabel(r'$\tau$ (ns)')   
-ax[2,0].set_xlabel('T (°C)')   
-ax[2,1].set_xlabel('T (°C)')    
+    a[0].set_ylabel(r'$\tau$ (ns)')
 
 ax[0,0].set_title('57 kA/m',loc='left') 
 ax[0,1].set_title('57 kA/m',loc='left')
@@ -384,7 +438,664 @@ ax[2,1].set_title('20 kA/m',loc='left')
 
 fig.text(0.275, 0.92,dir_a, ha='center',fontsize=13)
 fig.text(0.775, 0.92,dir_c, ha='center',fontsize=13)
-plt.suptitle('NE5X cong s/campo\n $\\tau$ vs T',fontsize=16)
+plt.suptitle('NE5X cong s/ $H_{DC}^{\perp}$\n$\\tau$ vs Temperatura',fontsize=16)
+
+#% Tiempos absoultos
+time_a_150_1 = np.array([(f-time_a_150_1[0]).total_seconds() for f in  time_a_150_1])
+time_a_150_2 = np.array([(f-time_a_150_2[0]).total_seconds() for f in  time_a_150_2])
+time_a_150_3 = np.array([(f-time_a_150_3[0]).total_seconds() for f in  time_a_150_3])
+time_a_100_1 = np.array([(f-time_a_100_1[0]).total_seconds() for f in  time_a_100_1])
+time_a_100_2 = np.array([(f-time_a_100_2[0]).total_seconds() for f in  time_a_100_2])
+time_a_100_3 = np.array([(f-time_a_100_3[0]).total_seconds() for f in  time_a_100_3])
+time_a_050_1 = np.array([(f-time_a_050_1[0]).total_seconds() for f in  time_a_050_1])
+time_a_050_2 = np.array([(f-time_a_050_2[0]).total_seconds() for f in  time_a_050_2])
+time_a_050_3 = np.array([(f-time_a_050_3[0]).total_seconds() for f in  time_a_050_3])
+
+time_max_a_150_1=time_a_150_1[np.nonzero(tau_a_150_1==max(tau_a_150_1))][0]
+time_max_a_150_2=time_a_150_2[np.nonzero(tau_a_150_2==max(tau_a_150_2))][0]
+time_max_a_150_3=time_a_150_3[np.nonzero(tau_a_150_3==max(tau_a_150_3))][0]
+time_max_a_100_1=time_a_100_1[np.nonzero(tau_a_100_1==max(tau_a_100_1))][0]
+time_max_a_100_2=time_a_100_2[np.nonzero(tau_a_100_2==max(tau_a_100_2))][0]
+time_max_a_100_3=time_a_100_3[np.nonzero(tau_a_100_3==max(tau_a_100_3))][0]
+time_max_a_050_1=time_a_050_1[np.nonzero(tau_a_050_1==max(tau_a_050_1))][0]
+time_max_a_050_2=time_a_050_2[np.nonzero(tau_a_050_2==max(tau_a_050_2))][0]
+time_max_a_050_3=time_a_050_3[np.nonzero(tau_a_050_3==max(tau_a_050_3))][0]
+
+#% Aca  ya salian como np.array asi que es mas facil
+time_c_150_1 -= time_c_150_1[0]
+time_c_150_2 -= time_c_150_2[0]
+time_c_150_3 -= time_c_150_3[0]
+time_c_100_1 -= time_c_100_1[0]
+time_c_100_2 -= time_c_100_2[0]
+time_c_100_3 -= time_c_100_3[0]
+time_c_050_1 -= time_c_050_1[0]
+time_c_050_2 -= time_c_050_2[0]
+time_c_050_3 -= time_c_050_3[0]
+
+time_max_c_150_1=time_c_150_1[np.nonzero(tau_c_150_1==max(tau_c_150_1))][0]
+time_max_c_150_2=time_c_150_2[np.nonzero(tau_c_150_2==max(tau_c_150_2))][0]
+time_max_c_150_3=time_c_150_3[np.nonzero(tau_c_150_3==max(tau_c_150_3))][0]
+time_max_c_100_1=time_c_100_1[np.nonzero(tau_c_100_1==max(tau_c_100_1))][0]
+time_max_c_100_2=time_c_100_2[np.nonzero(tau_c_100_2==max(tau_c_100_2))][0]
+time_max_c_100_3=time_c_100_3[np.nonzero(tau_c_100_3==max(tau_c_100_3))][0]
+time_max_c_050_1=time_c_050_1[np.nonzero(tau_c_050_1==max(tau_c_050_1))][0]
+time_max_c_050_2=time_c_050_2[np.nonzero(tau_c_050_2==max(tau_c_050_2))][0]
+time_max_c_050_3=time_c_050_3[np.nonzero(tau_c_050_3==max(tau_c_050_3))][0]
+
+#%% Tau vs tiempo
+fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+ax[0,0].plot(time_a_150_1,tau_a_150_1)
+ax[0,0].plot(time_a_150_2,tau_a_150_2)
+ax[0,0].plot(time_a_150_3,tau_a_150_3)
+ax[0,0].scatter(time_max_a_150_1,tau_max_a_150_1,marker='X',label=f'{tau_max_a_150_1:.1f} ns at {time_max_a_150_1:.1f} s')
+ax[0,0].scatter(time_max_a_150_2,tau_max_a_150_2,marker='X',label=f'{tau_max_a_150_2:.1f} ns at {time_max_a_150_2:.1f} s')
+ax[0,0].scatter(time_max_a_150_3,tau_max_a_150_3,marker='X',label=f'{tau_max_a_150_3:.1f} ns at {time_max_a_150_3:.1f} s')
+
+ax[0,1].plot(time_c_150_1,tau_c_150_1)
+ax[0,1].plot(time_c_150_2,tau_c_150_2)
+ax[0,1].plot(time_c_150_3,tau_c_150_3)
+ax[0,1].scatter(time_max_c_150_1,tau_max_c_150_1,marker='X',label=f'{tau_max_c_150_1:.1f} ns at {time_max_c_150_1:.1f} s')
+ax[0,1].scatter(time_max_c_150_2,tau_max_c_150_2,marker='X',label=f'{tau_max_c_150_2:.1f} ns at {time_max_c_150_2:.1f} s')
+ax[0,1].scatter(time_max_c_150_3,tau_max_c_150_3,marker='X',label=f'{tau_max_c_150_3:.1f} ns at {time_max_c_150_3:.1f} s')
+
+ax[1,0].plot(time_a_100_1,tau_a_100_1)
+ax[1,0].plot(time_a_100_2,tau_a_100_2)
+ax[1,0].plot(time_a_100_3,tau_a_100_3)
+ax[1,0].scatter(time_max_a_100_1,tau_max_a_100_1,marker='X',label=f'{tau_max_a_100_1:.1f} ns at {time_max_a_100_1:.1f} s')
+ax[1,0].scatter(time_max_a_100_2,tau_max_a_100_2,marker='X',label=f'{tau_max_a_100_2:.1f} ns at {time_max_a_100_2:.1f} s')
+ax[1,0].scatter(time_max_a_100_3,tau_max_a_100_3,marker='X',label=f'{tau_max_a_100_3:.1f} ns at {time_max_a_100_3:.1f} s')
+
+ax[1,1].plot(time_c_100_1,tau_c_100_1)
+ax[1,1].plot(time_c_100_2,tau_c_100_2)
+ax[1,1].plot(time_c_100_3,tau_c_100_3)
+ax[1,1].scatter(time_max_c_100_1,tau_max_c_100_1,marker='X',label=f'{tau_max_c_100_1:.1f} ns at {time_max_c_100_1:.1f} s')
+ax[1,1].scatter(time_max_c_100_2,tau_max_c_100_2,marker='X',label=f'{tau_max_c_100_2:.1f} ns at {time_max_c_100_2:.1f} s')
+ax[1,1].scatter(time_max_c_100_3,tau_max_c_100_3,marker='X',label=f'{tau_max_c_100_3:.1f} ns at {time_max_c_100_3:.1f} s')
+
+ax[2,0].plot(time_a_050_1,tau_a_050_1,)
+ax[2,0].plot(time_a_050_2,tau_a_050_2,)
+ax[2,0].plot(time_a_050_3,tau_a_050_3,)
+ax[2,0].scatter(time_max_a_050_1,tau_max_a_050_1,marker='X',label=f'{tau_max_a_050_1:.1f} ns at {time_max_a_050_1:.1f} s')
+ax[2,0].scatter(time_max_a_050_2,tau_max_a_050_2,marker='X',label=f'{tau_max_a_050_2:.1f} ns at {time_max_a_050_2:.1f} s')
+ax[2,0].scatter(time_max_a_050_3,tau_max_a_050_3,marker='X',label=f'{tau_max_a_050_3:.1f} ns at {time_max_a_050_3:.1f} s')
+
+ax[2,1].plot(time_c_050_1,tau_c_050_1,)
+ax[2,1].plot(time_c_050_2,tau_c_050_2,)
+ax[2,1].plot(time_c_050_3,tau_c_050_3,)
+ax[2,1].scatter(time_max_c_050_1,tau_max_c_050_1,marker='X',label=f'{tau_max_c_050_1:.1f} ns at {time_max_c_050_1:.1f} s')
+ax[2,1].scatter(time_max_c_050_2,tau_max_c_050_2,marker='X',label=f'{tau_max_c_050_2:.1f} ns at {time_max_c_050_2:.1f} s')
+ax[2,1].scatter(time_max_c_050_3,tau_max_c_050_3,marker='X',label=f'{tau_max_c_050_3:.1f} ns at {time_max_c_050_3:.1f} s')
+
+for a in ax:
+    for b in a:
+        b.grid()
+        b.legend(title=r'$\tau_{max}$',fontsize=9)
+        b.set_xlabel('t (s)')
+for a in ax:
+    a[0].set_ylabel(r'$\tau$ (ns)')   
+
+ax[0,0].set_title('57 kA/m',loc='left') 
+ax[0,1].set_title('57 kA/m',loc='left')
+ax[1,0].set_title('38 kA/m',loc='left') 
+ax[1,1].set_title('38 kA/m',loc='left')
+ax[2,0].set_title('20 kA/m',loc='left') 
+ax[2,1].set_title('20 kA/m',loc='left')
+
+fig.text(0.275, 0.92,dir_a, ha='center',fontsize=13)
+fig.text(0.775, 0.92,dir_c, ha='center',fontsize=13)
+plt.suptitle('NE5X cong s/ $H_{DC}^{\perp}$\n$\\tau$ vs tiempo',fontsize=16)
+
+#%% Templogs
+fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+ax[0,0].plot(time_a_150_1,temp_a_150_1)
+ax[0,0].plot(time_a_150_2,temp_a_150_2)
+ax[0,0].plot(time_a_150_3,temp_a_150_3)
+ax[0,0].scatter(time_max_a_150_1,temp_max_a_150_1,marker='X',label=f'{tau_max_a_150_1:.1f} ns at {time_max_a_150_1:.1f} s')
+ax[0,0].scatter(time_max_a_150_2,temp_max_a_150_2,marker='X',label=f'{tau_max_a_150_2:.1f} ns at {time_max_a_150_2:.1f} s')
+ax[0,0].scatter(time_max_a_150_3,temp_max_a_150_3,marker='X',label=f'{tau_max_a_150_3:.1f} ns at {time_max_a_150_3:.1f} s')
+
+ax[0,1].plot(time_c_150_1,temp_c_150_1)
+ax[0,1].plot(time_c_150_2,temp_c_150_2)
+ax[0,1].plot(time_c_150_3,temp_c_150_3)
+ax[0,1].scatter(time_max_c_150_1,temp_max_c_150_1,marker='X',label=f'{tau_max_c_150_1:.1f} ns at {time_max_c_150_1:.1f} s')
+ax[0,1].scatter(time_max_c_150_2,temp_max_c_150_2,marker='X',label=f'{tau_max_c_150_2:.1f} ns at {time_max_c_150_2:.1f} s')
+ax[0,1].scatter(time_max_c_150_3,temp_max_c_150_3,marker='X',label=f'{tau_max_c_150_3:.1f} ns at {time_max_c_150_3:.1f} s')
+
+ax[1,0].plot(time_a_100_1,temp_a_100_1)
+ax[1,0].plot(time_a_100_2,temp_a_100_2)
+ax[1,0].plot(time_a_100_3,temp_a_100_3)
+ax[1,0].scatter(time_max_a_100_1,temp_max_a_100_1,marker='X',label=f'{tau_max_a_100_1:.1f} ns at {time_max_a_100_1:.1f} s')
+ax[1,0].scatter(time_max_a_100_2,temp_max_a_100_2,marker='X',label=f'{tau_max_a_100_2:.1f} ns at {time_max_a_100_2:.1f} s')
+ax[1,0].scatter(time_max_a_100_3,temp_max_a_100_3,marker='X',label=f'{tau_max_a_100_3:.1f} ns at {time_max_a_100_3:.1f} s')
+
+ax[1,1].plot(time_c_100_1,temp_c_100_1)
+ax[1,1].plot(time_c_100_2,temp_c_100_2)
+ax[1,1].plot(time_c_100_3,temp_c_100_3)
+ax[1,1].scatter(time_max_c_100_1,temp_max_c_100_1,marker='X',label=f'{tau_max_c_100_1:.1f} ns at {time_max_c_100_1:.1f} s')
+ax[1,1].scatter(time_max_c_100_2,temp_max_c_100_2,marker='X',label=f'{tau_max_c_100_2:.1f} ns at {time_max_c_100_2:.1f} s')
+ax[1,1].scatter(time_max_c_100_3,temp_max_c_100_3,marker='X',label=f'{tau_max_c_100_3:.1f} ns at {time_max_c_100_3:.1f} s')
+
+ax[2,0].plot(time_a_050_1,temp_a_050_1,)
+ax[2,0].plot(time_a_050_2,temp_a_050_2,)
+ax[2,0].plot(time_a_050_3,temp_a_050_3,)
+ax[2,0].scatter(time_max_a_050_1,temp_max_a_050_1,marker='X',label=f'{tau_max_a_050_1:.1f} ns at {time_max_a_050_1:.1f} s')
+ax[2,0].scatter(time_max_a_050_2,temp_max_a_050_2,marker='X',label=f'{tau_max_a_050_2:.1f} ns at {time_max_a_050_2:.1f} s')
+ax[2,0].scatter(time_max_a_050_3,temp_max_a_050_3,marker='X',label=f'{tau_max_a_050_3:.1f} ns at {time_max_a_050_3:.1f} s')
+
+ax[2,1].plot(time_c_050_1,temp_c_050_1,)
+ax[2,1].plot(time_c_050_2,temp_c_050_2,)
+ax[2,1].plot(time_c_050_3,temp_c_050_3,)
+ax[2,1].scatter(time_max_c_050_1,temp_max_c_050_1,marker='X',label=f'{tau_max_c_050_1:.1f} ns at {time_max_c_050_1:.1f} s')
+ax[2,1].scatter(time_max_c_050_2,temp_max_c_050_2,marker='X',label=f'{tau_max_c_050_2:.1f} ns at {time_max_c_050_2:.1f} s')
+ax[2,1].scatter(time_max_c_050_3,temp_max_c_050_3,marker='X',label=f'{tau_max_c_050_3:.1f} ns at {time_max_c_050_3:.1f} s')
+
+for a in ax:
+    for b in a:
+        b.grid()
+        b.legend(title=r'$\tau_{max}$',fontsize=10)
+        b.set_xlabel('t (s)')    
+        
+for a in ax:
+    a[0].set_ylabel(r'$\tau$ (ns)')   
+
+ax[0,0].set_title('57 kA/m',loc='left') 
+ax[0,1].set_title('57 kA/m',loc='left')
+ax[1,0].set_title('38 kA/m',loc='left') 
+ax[1,1].set_title('38 kA/m',loc='left')
+ax[2,0].set_title('20 kA/m',loc='left') 
+ax[2,1].set_title('20 kA/m',loc='left')
+
+fig.text(0.275, 0.92,dir_a, ha='center',fontsize=13)
+fig.text(0.775, 0.92,dir_c, ha='center',fontsize=13)
+plt.suptitle('NE5X cong s/ $H_{DC}^{\perp}$\nTemperatura vs tiempo',fontsize=16)
+
+#%% (b) vs (c): 135 kHz  descong sin/con campo DC - distintas fechas %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+dir_b= 'b - 04-Jul - 135 kHz'
+files_b_150 = glob(os.path.join(dir_b, '*150dA*'))
+files_b_100 = glob(os.path.join(dir_b, '*100dA*'))
+files_b_050 = glob(os.path.join(dir_b, '*050dA*'))
+
+_,files_b_150_1,time_b_150_1,temp_b_150_1,_,_,_,_,_,_,_,_,SAR_b_150_1,tau_b_150_1,_ = lector_resultados(files_b_150[0])
+_,files_b_150_2,time_b_150_2,temp_b_150_2,_,_,_,_,_,_,_,_,SAR_b_150_2,tau_b_150_2,_ = lector_resultados(files_b_150[1])
+_,files_b_150_3,time_b_150_3,temp_b_150_3,_,_,_,_,_,_,_,_,SAR_b_150_3,tau_b_150_3,_ = lector_resultados(files_b_150[2])
+
+_,files_b_100_1,time_b_100_1,temp_b_100_1,_,_,_,_,_,_,_,_,SAR_b_100_1,tau_b_100_1,_ = lector_resultados(files_b_100[0])
+_,files_b_100_2,time_b_100_2,temp_b_100_2,_,_,_,_,_,_,_,_,SAR_b_100_2,tau_b_100_2,_ = lector_resultados(files_b_100[1])
+_,files_b_100_3,time_b_100_3,temp_b_100_3,_,_,_,_,_,_,_,_,SAR_b_100_3,tau_b_100_3,_ = lector_resultados(files_b_100[2])
+
+_,files_b_050_1,time_b_050_1,temp_b_050_1,_,_,_,_,_,_,_,_,SAR_b_050_1,tau_b_050_1,_ = lector_resultados(files_b_050[0])
+_,files_b_050_2,time_b_050_2,temp_b_050_2,_,_,_,_,_,_,_,_,SAR_b_050_2,tau_b_050_2,_ = lector_resultados(files_b_050[1])
+_,files_b_050_3,time_b_050_3,temp_b_050_3,_,_,_,_,_,_,_,_,SAR_b_050_3,tau_b_050_3,_ = lector_resultados(files_b_050[2])
+
+dir_c= 'c - 18-Jul - 135 kHz'
+files_c_150 = glob(os.path.join(dir_c, '*150dA*'))
+files_c_100 = glob(os.path.join(dir_c, '*100dA*'))
+files_c_050 = glob(os.path.join(dir_c, '*050dA*'))
+
+_,files_c_150_1,time_c_150_1,temp_c_150_1,_,_,_,_,_,_,_,_,SAR_c_150_1,tau_c_150_1,_ = lector_resultados_2(files_c_150[0])
+_,files_c_150_2,time_c_150_2,temp_c_150_2,_,_,_,_,_,_,_,_,SAR_c_150_2,tau_c_150_2,_ = lector_resultados_2(files_c_150[1])
+_,files_c_150_3,time_c_150_3,temp_c_150_3,_,_,_,_,_,_,_,_,SAR_c_150_3,tau_c_150_3,_ = lector_resultados_2(files_c_150[2])
+
+_,files_c_100_1,time_c_100_1,temp_c_100_1,_,_,_,_,_,_,_,_,SAR_c_100_1,tau_c_100_1,_ = lector_resultados_2(files_c_100[0])
+_,files_c_100_2,time_c_100_2,temp_c_100_2,_,_,_,_,_,_,_,_,SAR_c_100_2,tau_c_100_2,_ = lector_resultados_2(files_c_100[1])
+_,files_c_100_3,time_c_100_3,temp_c_100_3,_,_,_,_,_,_,_,_,SAR_c_100_3,tau_c_100_3,_ = lector_resultados_2(files_c_100[2])
+
+_,files_c_050_1,time_c_050_1,temp_c_050_1,_,_,_,_,_,_,_,_,SAR_c_050_1,tau_c_050_1,_ = lector_resultados_2(files_c_050[0])
+_,files_c_050_2,time_c_050_2,temp_c_050_2,_,_,_,_,_,_,_,_,SAR_c_050_2,tau_c_050_2,_ = lector_resultados_2(files_c_050[1])
+_,files_c_050_3,time_c_050_3,temp_c_050_3,_,_,_,_,_,_,_,_,SAR_c_050_3,tau_c_050_3,_ = lector_resultados_2(files_c_050[2])
+
+#% paso tau a ns
+tau_b_150_1=tau_b_150_1*1e9
+tau_b_150_2=tau_b_150_2*1e9
+tau_b_150_3=tau_b_150_3*1e9
+tau_b_100_1=tau_b_100_1*1e9
+tau_b_100_2=tau_b_100_2*1e9
+tau_b_100_3=tau_b_100_3*1e9
+tau_b_050_1=tau_b_050_1*1e9
+tau_b_050_2=tau_b_050_2*1e9
+tau_b_050_3=tau_b_050_3*1e9
+
+tau_c_150_1=tau_c_150_1*1e9
+tau_c_150_2=tau_c_150_2*1e9
+tau_c_150_3=tau_c_150_3*1e9
+tau_c_100_1=tau_c_100_1*1e9
+tau_c_100_2=tau_c_100_2*1e9
+tau_c_100_3=tau_c_100_3*1e9
+tau_c_050_1=tau_c_050_1*1e9
+tau_c_050_2=tau_c_050_2*1e9
+tau_c_050_3=tau_c_050_3*1e9
+#%encuentro los maximos 
+tau_max_b_150_1=tau_b_150_1[np.nonzero(tau_b_150_1==max(tau_b_150_1))][0]
+tau_max_b_150_2=tau_b_150_2[np.nonzero(tau_b_150_2==max(tau_b_150_2))][0]
+tau_max_b_150_3=tau_b_150_3[np.nonzero(tau_b_150_3==max(tau_b_150_3))][0]
+tau_max_b_100_1=tau_b_100_1[np.nonzero(tau_b_100_1==max(tau_b_100_1))][0]
+tau_max_b_100_2=tau_b_100_2[np.nonzero(tau_b_100_2==max(tau_b_100_2))][0]
+tau_max_b_100_3=tau_b_100_3[np.nonzero(tau_b_100_3==max(tau_b_100_3))][0]
+tau_max_b_050_1=tau_b_050_1[np.nonzero(tau_b_050_1==max(tau_b_050_1))][0]
+tau_max_b_050_2=tau_b_050_2[np.nonzero(tau_b_050_2==max(tau_b_050_2))][0]
+tau_max_b_050_3=tau_b_050_3[np.nonzero(tau_b_050_3==max(tau_b_050_3))][0]
+
+temp_max_b_150_1=temp_b_150_1[np.nonzero(tau_b_150_1==max(tau_b_150_1))][0]
+temp_max_b_150_2=temp_b_150_2[np.nonzero(tau_b_150_2==max(tau_b_150_2))][0]
+temp_max_b_150_3=temp_b_150_3[np.nonzero(tau_b_150_3==max(tau_b_150_3))][0]
+temp_max_b_100_1=temp_b_100_1[np.nonzero(tau_b_100_1==max(tau_b_100_1))][0]
+temp_max_b_100_2=temp_b_100_2[np.nonzero(tau_b_100_2==max(tau_b_100_2))][0]
+temp_max_b_100_3=temp_b_100_3[np.nonzero(tau_b_100_3==max(tau_b_100_3))][0]
+temp_max_b_050_1=temp_b_050_1[np.nonzero(tau_b_050_1==max(tau_b_050_1))][0]
+temp_max_b_050_2=temp_b_050_2[np.nonzero(tau_b_050_2==max(tau_b_050_2))][0]
+temp_max_b_050_3=temp_b_050_3[np.nonzero(tau_b_050_3==max(tau_b_050_3))][0]
+
+tau_max_c_150_1=tau_c_150_1[np.nonzero(tau_c_150_1==max(tau_c_150_1))][0]
+tau_max_c_150_2=tau_c_150_2[np.nonzero(tau_c_150_2==max(tau_c_150_2))][0]
+tau_max_c_150_3=tau_c_150_3[np.nonzero(tau_c_150_3==max(tau_c_150_3))][0]
+tau_max_c_100_1=tau_c_100_1[np.nonzero(tau_c_100_1==max(tau_c_100_1))][0]
+tau_max_c_100_2=tau_c_100_2[np.nonzero(tau_c_100_2==max(tau_c_100_2))][0]
+tau_max_c_100_3=tau_c_100_3[np.nonzero(tau_c_100_3==max(tau_c_100_3))][0]
+tau_max_c_050_1=tau_c_050_1[np.nonzero(tau_c_050_1==max(tau_c_050_1))][0]
+tau_max_c_050_2=tau_c_050_2[np.nonzero(tau_c_050_2==max(tau_c_050_2))][0]
+tau_max_c_050_3=tau_c_050_3[np.nonzero(tau_c_050_3==max(tau_c_050_3))][0]
+
+temp_max_c_150_1=temp_c_150_1[np.nonzero(tau_c_150_1==max(tau_c_150_1))][0]
+temp_max_c_150_2=temp_c_150_2[np.nonzero(tau_c_150_2==max(tau_c_150_2))][0]
+temp_max_c_150_3=temp_c_150_3[np.nonzero(tau_c_150_3==max(tau_c_150_3))][0]
+temp_max_c_100_1=temp_c_100_1[np.nonzero(tau_c_100_1==max(tau_c_100_1))][0]
+temp_max_c_100_2=temp_c_100_2[np.nonzero(tau_c_100_2==max(tau_c_100_2))][0]
+temp_max_c_100_3=temp_c_100_3[np.nonzero(tau_c_100_3==max(tau_c_100_3))][0]
+temp_max_c_050_1=temp_c_050_1[np.nonzero(tau_c_050_1==max(tau_c_050_1))][0]
+temp_max_c_050_2=temp_c_050_2[np.nonzero(tau_c_050_2==max(tau_c_050_2))][0]
+temp_max_c_050_3=temp_c_050_3[np.nonzero(tau_c_050_3==max(tau_c_050_3))][0]
+
+#%% Tau vs T 
+fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+ax[0,0].plot(temp_b_150_1,tau_b_150_1)
+ax[0,0].plot(temp_b_150_2,tau_b_150_2)
+ax[0,0].plot(temp_b_150_3,tau_b_150_3)
+ax[0,0].scatter(temp_max_b_150_1,tau_max_b_150_1,marker='v',label=f'{tau_max_b_150_1:.1f} ns at {temp_max_b_150_1}°C')
+ax[0,0].scatter(temp_max_b_150_2,tau_max_b_150_2,marker='v',label=f'{tau_max_b_150_2:.1f} ns at {temp_max_b_150_2}°C')
+ax[0,0].scatter(temp_max_b_150_3,tau_max_b_150_3,marker='v',label=f'{tau_max_b_150_3:.1f} ns at {temp_max_b_150_3}°C')
+
+ax[0,1].plot(temp_c_150_1,tau_c_150_1)
+ax[0,1].plot(temp_c_150_2,tau_c_150_2)
+ax[0,1].plot(temp_c_150_3,tau_c_150_3)
+ax[0,1].scatter(temp_max_c_150_1,tau_max_c_150_1,marker='v',label=f'{tau_max_c_150_1:.1f} ns at {temp_max_c_150_1}°C')
+ax[0,1].scatter(temp_max_c_150_2,tau_max_c_150_2,marker='v',label=f'{tau_max_c_150_2:.1f} ns at {temp_max_c_150_2}°C')
+ax[0,1].scatter(temp_max_c_150_3,tau_max_c_150_3,marker='v',label=f'{tau_max_c_150_3:.1f} ns at {temp_max_c_150_3}°C')
+
+ax[1,0].plot(temp_b_100_1,tau_b_100_1)
+ax[1,0].plot(temp_b_100_2,tau_b_100_2)
+ax[1,0].plot(temp_b_100_3,tau_b_100_3)
+ax[1,0].scatter(temp_max_b_100_1,tau_max_b_100_1,marker='v',label=f'{tau_max_b_100_1:.1f} ns at {temp_max_b_100_1}°C')
+ax[1,0].scatter(temp_max_b_100_2,tau_max_b_100_2,marker='v',label=f'{tau_max_b_100_2:.1f} ns at {temp_max_b_100_2}°C')
+ax[1,0].scatter(temp_max_b_100_3,tau_max_b_100_3,marker='v',label=f'{tau_max_b_100_3:.1f} ns at {temp_max_b_100_3}°C')
+
+ax[1,1].plot(temp_c_100_1,tau_c_100_1)
+ax[1,1].plot(temp_c_100_2,tau_c_100_2)
+ax[1,1].plot(temp_c_100_3,tau_c_100_3)
+ax[1,1].scatter(temp_max_c_100_1,tau_max_c_100_1,marker='v',label=f'{tau_max_c_100_1:.1f} ns at {temp_max_c_100_1}°C')
+ax[1,1].scatter(temp_max_c_100_2,tau_max_c_100_2,marker='v',label=f'{tau_max_c_100_2:.1f} ns at {temp_max_c_100_2}°C')
+ax[1,1].scatter(temp_max_c_100_3,tau_max_c_100_3,marker='v',label=f'{tau_max_c_100_3:.1f} ns at {temp_max_c_100_3}°C')
+
+ax[2,0].plot(temp_b_050_1,tau_b_050_1,)
+ax[2,0].plot(temp_b_050_2,tau_b_050_2,)
+ax[2,0].plot(temp_b_050_3,tau_b_050_3,)
+ax[2,0].scatter(temp_max_b_050_1,tau_max_b_050_1,marker='v',label=f'{tau_max_b_050_1:.1f} ns at {temp_max_b_050_1}°C')
+ax[2,0].scatter(temp_max_b_050_2,tau_max_b_050_2,marker='v',label=f'{tau_max_b_050_2:.1f} ns at {temp_max_b_050_2}°C')
+ax[2,0].scatter(temp_max_b_050_3,tau_max_b_050_3,marker='v',label=f'{tau_max_b_050_3:.1f} ns at {temp_max_b_050_3}°C')
+
+ax[2,1].plot(temp_c_050_1,tau_c_050_1,)
+ax[2,1].plot(temp_c_050_2,tau_c_050_2,)
+ax[2,1].plot(temp_c_050_3,tau_c_050_3,)
+ax[2,1].scatter(temp_max_c_050_1,tau_max_c_050_1,marker='v',label=f'{tau_max_c_050_1:.1f} ns at {temp_max_c_050_1}°C')
+ax[2,1].scatter(temp_max_c_050_2,tau_max_c_050_2,marker='v',label=f'{tau_max_c_050_2:.1f} ns at {temp_max_c_050_2}°C')
+ax[2,1].scatter(temp_max_c_050_3,tau_max_c_050_3,marker='v',label=f'{tau_max_c_050_3:.1f} ns at {temp_max_c_050_3}°C')
+
+for a in ax:
+    for b in a:
+        b.grid()
+        b.legend(title=r'$\tau_{max}$',fontsize=9)
+        b.set_xlabel('T (°C)')
+for a in ax:
+    a[0].set_ylabel(r'$\tau$ (ns)')
+
+ax[0,0].set_title('57 kA/m',loc='left') 
+ax[0,1].set_title('57 kA/m',loc='left')
+ax[1,0].set_title('38 kA/m',loc='left') 
+ax[1,1].set_title('38 kA/m',loc='left')
+ax[2,0].set_title('20 kA/m',loc='left') 
+ax[2,1].set_title('20 kA/m',loc='left')
+
+fig.text(0.275, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
+fig.text(0.775, 0.92,dir_c+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
+plt.suptitle('NE5X cong s/c $H_{DC}$\n$\\tau$ vs Temperatura',fontsize=16)
+#% Tiempos absoultos
+time_b_150_1 = np.array([(f-time_b_150_1[0]).total_seconds() for f in  time_b_150_1])
+time_b_150_2 = np.array([(f-time_b_150_2[0]).total_seconds() for f in  time_b_150_2])
+time_b_150_3 = np.array([(f-time_b_150_3[0]).total_seconds() for f in  time_b_150_3])
+time_b_100_1 = np.array([(f-time_b_100_1[0]).total_seconds() for f in  time_b_100_1])
+time_b_100_2 = np.array([(f-time_b_100_2[0]).total_seconds() for f in  time_b_100_2])
+time_b_100_3 = np.array([(f-time_b_100_3[0]).total_seconds() for f in  time_b_100_3])
+time_b_050_1 = np.array([(f-time_b_050_1[0]).total_seconds() for f in  time_b_050_1])
+time_b_050_2 = np.array([(f-time_b_050_2[0]).total_seconds() for f in  time_b_050_2])
+time_b_050_3 = np.array([(f-time_b_050_3[0]).total_seconds() for f in  time_b_050_3])
+
+time_max_b_150_1=time_b_150_1[np.nonzero(tau_b_150_1==max(tau_b_150_1))][0]
+time_max_b_150_2=time_b_150_2[np.nonzero(tau_b_150_2==max(tau_b_150_2))][0]
+time_max_b_150_3=time_b_150_3[np.nonzero(tau_b_150_3==max(tau_b_150_3))][0]
+time_max_b_100_1=time_b_100_1[np.nonzero(tau_b_100_1==max(tau_b_100_1))][0]
+time_max_b_100_2=time_b_100_2[np.nonzero(tau_b_100_2==max(tau_b_100_2))][0]
+time_max_b_100_3=time_b_100_3[np.nonzero(tau_b_100_3==max(tau_b_100_3))][0]
+time_max_b_050_1=time_b_050_1[np.nonzero(tau_b_050_1==max(tau_b_050_1))][0]
+time_max_b_050_2=time_b_050_2[np.nonzero(tau_b_050_2==max(tau_b_050_2))][0]
+time_max_b_050_3=time_b_050_3[np.nonzero(tau_b_050_3==max(tau_b_050_3))][0]
+
+#% Aca  ya salian como np.array asi que es mas facil
+time_c_150_1 -= time_c_150_1[0]
+time_c_150_2 -= time_c_150_2[0]
+time_c_150_3 -= time_c_150_3[0]
+time_c_100_1 -= time_c_100_1[0]
+time_c_100_2 -= time_c_100_2[0]
+time_c_100_3 -= time_c_100_3[0]
+time_c_050_1 -= time_c_050_1[0]
+time_c_050_2 -= time_c_050_2[0]
+time_c_050_3 -= time_c_050_3[0]
+
+time_max_c_150_1=time_c_150_1[np.nonzero(tau_c_150_1==max(tau_c_150_1))][0]
+time_max_c_150_2=time_c_150_2[np.nonzero(tau_c_150_2==max(tau_c_150_2))][0]
+time_max_c_150_3=time_c_150_3[np.nonzero(tau_c_150_3==max(tau_c_150_3))][0]
+time_max_c_100_1=time_c_100_1[np.nonzero(tau_c_100_1==max(tau_c_100_1))][0]
+time_max_c_100_2=time_c_100_2[np.nonzero(tau_c_100_2==max(tau_c_100_2))][0]
+time_max_c_100_3=time_c_100_3[np.nonzero(tau_c_100_3==max(tau_c_100_3))][0]
+time_max_c_050_1=time_c_050_1[np.nonzero(tau_c_050_1==max(tau_c_050_1))][0]
+time_max_c_050_2=time_c_050_2[np.nonzero(tau_c_050_2==max(tau_c_050_2))][0]
+time_max_c_050_3=time_c_050_3[np.nonzero(tau_c_050_3==max(tau_c_050_3))][0]
+
+#%% Tau vs tiempo
+fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+ax[0,0].plot(time_b_150_1,tau_b_150_1)
+ax[0,0].plot(time_b_150_2,tau_b_150_2)
+ax[0,0].plot(time_b_150_3,tau_b_150_3)
+ax[0,0].scatter(time_max_b_150_1,tau_max_b_150_1,marker='X',label=f'{tau_max_b_150_1:.1f} ns at {time_max_b_150_1:.1f} s')
+ax[0,0].scatter(time_max_b_150_2,tau_max_b_150_2,marker='X',label=f'{tau_max_b_150_2:.1f} ns at {time_max_b_150_2:.1f} s')
+ax[0,0].scatter(time_max_b_150_3,tau_max_b_150_3,marker='X',label=f'{tau_max_b_150_3:.1f} ns at {time_max_b_150_3:.1f} s')
+
+ax[0,1].plot(time_c_150_1,tau_c_150_1)
+ax[0,1].plot(time_c_150_2,tau_c_150_2)
+ax[0,1].plot(time_c_150_3,tau_c_150_3)
+ax[0,1].scatter(time_max_c_150_1,tau_max_c_150_1,marker='X',label=f'{tau_max_c_150_1:.1f} ns at {time_max_c_150_1:.1f} s')
+ax[0,1].scatter(time_max_c_150_2,tau_max_c_150_2,marker='X',label=f'{tau_max_c_150_2:.1f} ns at {time_max_c_150_2:.1f} s')
+ax[0,1].scatter(time_max_c_150_3,tau_max_c_150_3,marker='X',label=f'{tau_max_c_150_3:.1f} ns at {time_max_c_150_3:.1f} s')
+
+ax[1,0].plot(time_b_100_1,tau_b_100_1)
+ax[1,0].plot(time_b_100_2,tau_b_100_2)
+ax[1,0].plot(time_b_100_3,tau_b_100_3)
+ax[1,0].scatter(time_max_b_100_1,tau_max_b_100_1,marker='X',label=f'{tau_max_b_100_1:.1f} ns at {time_max_b_100_1:.1f} s')
+ax[1,0].scatter(time_max_b_100_2,tau_max_b_100_2,marker='X',label=f'{tau_max_b_100_2:.1f} ns at {time_max_b_100_2:.1f} s')
+ax[1,0].scatter(time_max_b_100_3,tau_max_b_100_3,marker='X',label=f'{tau_max_b_100_3:.1f} ns at {time_max_b_100_3:.1f} s')
+
+ax[1,1].plot(time_c_100_1,tau_c_100_1)
+ax[1,1].plot(time_c_100_2,tau_c_100_2)
+ax[1,1].plot(time_c_100_3,tau_c_100_3)
+ax[1,1].scatter(time_max_c_100_1,tau_max_c_100_1,marker='X',label=f'{tau_max_c_100_1:.1f} ns at {time_max_c_100_1:.1f} s')
+ax[1,1].scatter(time_max_c_100_2,tau_max_c_100_2,marker='X',label=f'{tau_max_c_100_2:.1f} ns at {time_max_c_100_2:.1f} s')
+ax[1,1].scatter(time_max_c_100_3,tau_max_c_100_3,marker='X',label=f'{tau_max_c_100_3:.1f} ns at {time_max_c_100_3:.1f} s')
+
+ax[2,0].plot(time_b_050_1,tau_b_050_1,)
+ax[2,0].plot(time_b_050_2,tau_b_050_2,)
+ax[2,0].plot(time_b_050_3,tau_b_050_3,)
+ax[2,0].scatter(time_max_b_050_1,tau_max_b_050_1,marker='X',label=f'{tau_max_b_050_1:.1f} ns at {time_max_b_050_1:.1f} s')
+ax[2,0].scatter(time_max_b_050_2,tau_max_b_050_2,marker='X',label=f'{tau_max_b_050_2:.1f} ns at {time_max_b_050_2:.1f} s')
+ax[2,0].scatter(time_max_b_050_3,tau_max_b_050_3,marker='X',label=f'{tau_max_b_050_3:.1f} ns at {time_max_b_050_3:.1f} s')
+
+ax[2,1].plot(time_c_050_1,tau_c_050_1,)
+ax[2,1].plot(time_c_050_2,tau_c_050_2,)
+ax[2,1].plot(time_c_050_3,tau_c_050_3,)
+ax[2,1].scatter(time_max_c_050_1,tau_max_c_050_1,marker='X',label=f'{tau_max_c_050_1:.1f} ns at {time_max_c_050_1:.1f} s')
+ax[2,1].scatter(time_max_c_050_2,tau_max_c_050_2,marker='X',label=f'{tau_max_c_050_2:.1f} ns at {time_max_c_050_2:.1f} s')
+ax[2,1].scatter(time_max_c_050_3,tau_max_c_050_3,marker='X',label=f'{tau_max_c_050_3:.1f} ns at {time_max_c_050_3:.1f} s')
+
+for a in ax:
+    for b in a:
+        b.grid()
+        b.legend(title=r'$\tau_{max}$',fontsize=9)
+        b.set_xlabel('t (s)')
+for a in ax:
+    a[0].set_ylabel(r'$\tau$ (ns)')   
+
+ax[0,0].set_title('57 kA/m',loc='left') 
+ax[0,1].set_title('57 kA/m',loc='left')
+ax[1,0].set_title('38 kA/m',loc='left') 
+ax[1,1].set_title('38 kA/m',loc='left')
+ax[2,0].set_title('20 kA/m',loc='left') 
+ax[2,1].set_title('20 kA/m',loc='left')
+
+fig.text(0.275, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
+fig.text(0.775, 0.92,dir_c+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
+plt.suptitle('NE5X cong s/c $H_{DC}$\n $\\tau$ vs tiempo',fontsize=16)
+
+#%% Templogs
+fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+ax[0,0].plot(time_b_150_1,temp_b_150_1)
+ax[0,0].plot(time_b_150_2,temp_b_150_2)
+ax[0,0].plot(time_b_150_3,temp_b_150_3)
+ax[0,0].scatter(time_max_b_150_1,temp_max_b_150_1,marker='X',label=f'{tau_max_b_150_1:.1f} ns at {time_max_b_150_1:.1f} s')
+ax[0,0].scatter(time_max_b_150_2,temp_max_b_150_2,marker='X',label=f'{tau_max_b_150_2:.1f} ns at {time_max_b_150_2:.1f} s')
+ax[0,0].scatter(time_max_b_150_3,temp_max_b_150_3,marker='X',label=f'{tau_max_b_150_3:.1f} ns at {time_max_b_150_3:.1f} s')
+
+ax[0,1].plot(time_c_150_1,temp_c_150_1)
+ax[0,1].plot(time_c_150_2,temp_c_150_2)
+ax[0,1].plot(time_c_150_3,temp_c_150_3)
+ax[0,1].scatter(time_max_c_150_1,temp_max_c_150_1,marker='X',label=f'{tau_max_c_150_1:.1f} ns at {time_max_c_150_1:.1f} s')
+ax[0,1].scatter(time_max_c_150_2,temp_max_c_150_2,marker='X',label=f'{tau_max_c_150_2:.1f} ns at {time_max_c_150_2:.1f} s')
+ax[0,1].scatter(time_max_c_150_3,temp_max_c_150_3,marker='X',label=f'{tau_max_c_150_3:.1f} ns at {time_max_c_150_3:.1f} s')
+
+ax[1,0].plot(time_b_100_1,temp_b_100_1)
+ax[1,0].plot(time_b_100_2,temp_b_100_2)
+ax[1,0].plot(time_b_100_3,temp_b_100_3)
+ax[1,0].scatter(time_max_b_100_1,temp_max_b_100_1,marker='X',label=f'{tau_max_b_100_1:.1f} ns at {time_max_b_100_1:.1f} s')
+ax[1,0].scatter(time_max_b_100_2,temp_max_b_100_2,marker='X',label=f'{tau_max_b_100_2:.1f} ns at {time_max_b_100_2:.1f} s')
+ax[1,0].scatter(time_max_b_100_3,temp_max_b_100_3,marker='X',label=f'{tau_max_b_100_3:.1f} ns at {time_max_b_100_3:.1f} s')
+
+ax[1,1].plot(time_c_100_1,temp_c_100_1)
+ax[1,1].plot(time_c_100_2,temp_c_100_2)
+ax[1,1].plot(time_c_100_3,temp_c_100_3)
+ax[1,1].scatter(time_max_c_100_1,temp_max_c_100_1,marker='X',label=f'{tau_max_c_100_1:.1f} ns at {time_max_c_100_1:.1f} s')
+ax[1,1].scatter(time_max_c_100_2,temp_max_c_100_2,marker='X',label=f'{tau_max_c_100_2:.1f} ns at {time_max_c_100_2:.1f} s')
+ax[1,1].scatter(time_max_c_100_3,temp_max_c_100_3,marker='X',label=f'{tau_max_c_100_3:.1f} ns at {time_max_c_100_3:.1f} s')
+
+ax[2,0].plot(time_b_050_1,temp_b_050_1,)
+ax[2,0].plot(time_b_050_2,temp_b_050_2,)
+ax[2,0].plot(time_b_050_3,temp_b_050_3,)
+ax[2,0].scatter(time_max_b_050_1,temp_max_b_050_1,marker='X',label=f'{tau_max_b_050_1:.1f} ns at {time_max_b_050_1:.1f} s')
+ax[2,0].scatter(time_max_b_050_2,temp_max_b_050_2,marker='X',label=f'{tau_max_b_050_2:.1f} ns at {time_max_b_050_2:.1f} s')
+ax[2,0].scatter(time_max_b_050_3,temp_max_b_050_3,marker='X',label=f'{tau_max_b_050_3:.1f} ns at {time_max_b_050_3:.1f} s')
+
+ax[2,1].plot(time_c_050_1,temp_c_050_1,)
+ax[2,1].plot(time_c_050_2,temp_c_050_2,)
+ax[2,1].plot(time_c_050_3,temp_c_050_3,)
+ax[2,1].scatter(time_max_c_050_1,temp_max_c_050_1,marker='X',label=f'{tau_max_c_050_1:.1f} ns at {time_max_c_050_1:.1f} s')
+ax[2,1].scatter(time_max_c_050_2,temp_max_c_050_2,marker='X',label=f'{tau_max_c_050_2:.1f} ns at {time_max_c_050_2:.1f} s')
+ax[2,1].scatter(time_max_c_050_3,temp_max_c_050_3,marker='X',label=f'{tau_max_c_050_3:.1f} ns at {time_max_c_050_3:.1f} s')
+
+for a in ax:
+    for b in a:
+        b.grid()
+        b.legend(title=r'$\tau_{max}$',fontsize=10)
+        b.set_xlabel('t (s)')    
+        
+for a in ax:
+    a[0].set_ylabel(r'$\tau$ (ns)')   
+
+ax[0,0].set_title('57 kA/m',loc='left') 
+ax[0,1].set_title('57 kA/m',loc='left')
+ax[1,0].set_title('38 kA/m',loc='left') 
+ax[1,1].set_title('38 kA/m',loc='left')
+ax[2,0].set_title('20 kA/m',loc='left') 
+ax[2,1].set_title('20 kA/m',loc='left')
+
+fig.text(0.275, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
+fig.text(0.775, 0.92,dir_c+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
+plt.suptitle('NE5X cong s/c $H_{DC}$\nTemperatura vs tiempo',fontsize=16)
+
+
+#%% (a) vs (b): 265 kHz sin/con campo DC - distintas fechas  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+dir_a= 'a  - 26-Jun - 265 kHz'
+files_a_150 = glob(os.path.join(dir_a, '*150dA*'))
+files_a_100 = glob(os.path.join(dir_a, '*100dA*'))
+files_a_050 = glob(os.path.join(dir_a, '*050dA*'))
+
+_,files_a_150_1,time_a_150_1,temp_a_150_1,_,_,_,_,_,_,_,_,SAR_a_150_1,tau_a_150_1,_ = lector_resultados(files_a_150[0])
+_,files_a_150_2,time_a_150_2,temp_a_150_2,_,_,_,_,_,_,_,_,SAR_a_150_2,tau_a_150_2,_ = lector_resultados(files_a_150[1])
+_,files_a_150_3,time_a_150_3,temp_a_150_3,_,_,_,_,_,_,_,_,SAR_a_150_3,tau_a_150_3,_ = lector_resultados(files_a_150[2])
+
+_,files_a_100_1,time_a_100_1,temp_a_100_1,_,_,_,_,_,_,_,_,SAR_a_100_1,tau_a_100_1,_ = lector_resultados(files_a_100[0])
+_,files_a_100_2,time_a_100_2,temp_a_100_2,_,_,_,_,_,_,_,_,SAR_a_100_2,tau_a_100_2,_ = lector_resultados(files_a_100[1])
+_,files_a_100_3,time_a_100_3,temp_a_100_3,_,_,_,_,_,_,_,_,SAR_a_100_3,tau_a_100_3,_ = lector_resultados(files_a_100[2])
+
+_,files_a_050_1,time_a_050_1,temp_a_050_1,_,_,_,_,_,_,_,_,SAR_a_050_1,tau_a_050_1,_ = lector_resultados(files_a_050[0])
+_,files_a_050_2,time_a_050_2,temp_a_050_2,_,_,_,_,_,_,_,_,SAR_a_050_2,tau_a_050_2,_ = lector_resultados(files_a_050[1])
+_,files_a_050_3,time_a_050_3,temp_a_050_3,_,_,_,_,_,_,_,_,SAR_a_050_3,tau_a_050_3,_ = lector_resultados(files_a_050[2])
+
+dir_b= 'b - 04-Jul - 265 kHz'
+files_b_150 = glob(os.path.join(dir_b, '*150dA*'))
+files_b_100 = glob(os.path.join(dir_b, '*100dA*'))
+files_b_050 = glob(os.path.join(dir_b, '*050dA*'))
+
+_,files_b_150_1,time_b_150_1,temp_b_150_1,_,_,_,_,_,_,_,_,SAR_b_150_1,tau_b_150_1,_ = lector_resultados(files_b_150[0])
+_,files_b_150_2,time_b_150_2,temp_b_150_2,_,_,_,_,_,_,_,_,SAR_b_150_2,tau_b_150_2,_ = lector_resultados(files_b_150[1])
+_,files_b_150_3,time_b_150_3,temp_b_150_3,_,_,_,_,_,_,_,_,SAR_b_150_3,tau_b_150_3,_ = lector_resultados(files_b_150[2])
+
+_,files_b_100_1,time_b_100_1,temp_b_100_1,_,_,_,_,_,_,_,_,SAR_b_100_1,tau_b_100_1,_ = lector_resultados(files_b_100[0])
+_,files_b_100_2,time_b_100_2,temp_b_100_2,_,_,_,_,_,_,_,_,SAR_b_100_2,tau_b_100_2,_ = lector_resultados(files_b_100[1])
+_,files_b_100_3,time_b_100_3,temp_b_100_3,_,_,_,_,_,_,_,_,SAR_b_100_3,tau_b_100_3,_ = lector_resultados(files_b_100[2])
+
+_,files_b_050_1,time_b_050_1,temp_b_050_1,_,_,_,_,_,_,_,_,SAR_b_050_1,tau_b_050_1,_ = lector_resultados(files_b_050[0])
+_,files_b_050_2,time_b_050_2,temp_b_050_2,_,_,_,_,_,_,_,_,SAR_b_050_2,tau_b_050_2,_ = lector_resultados(files_b_050[1])
+_,files_b_050_3,time_b_050_3,temp_b_050_3,_,_,_,_,_,_,_,_,SAR_b_050_3,tau_b_050_3,_ = lector_resultados(files_b_050[2])
+
+#% paso tau a ns
+tau_a_150_1=tau_a_150_1*1e9
+tau_a_150_2=tau_a_150_2*1e9
+tau_a_150_3=tau_a_150_3*1e9
+tau_a_100_1=tau_a_100_1*1e9
+tau_a_100_2=tau_a_100_2*1e9
+tau_a_100_3=tau_a_100_3*1e9
+tau_a_050_1=tau_a_050_1*1e9
+tau_a_050_2=tau_a_050_2*1e9
+tau_a_050_3=tau_a_050_3*1e9
+
+tau_b_150_1=tau_b_150_1*1e9
+tau_b_150_2=tau_b_150_2*1e9
+tau_b_150_3=tau_b_150_3*1e9
+tau_b_100_1=tau_b_100_1*1e9
+tau_b_100_2=tau_b_100_2*1e9
+tau_b_100_3=tau_b_100_3*1e9
+tau_b_050_1=tau_b_050_1*1e9
+tau_b_050_2=tau_b_050_2*1e9
+tau_b_050_3=tau_b_050_3*1e9
+#%encuentro los maximos 
+tau_max_a_150_1=tau_a_150_1[np.nonzero(tau_a_150_1==max(tau_a_150_1))][0]
+tau_max_a_150_2=tau_a_150_2[np.nonzero(tau_a_150_2==max(tau_a_150_2))][0]
+tau_max_a_150_3=tau_a_150_3[np.nonzero(tau_a_150_3==max(tau_a_150_3))][0]
+tau_max_a_100_1=tau_a_100_1[np.nonzero(tau_a_100_1==max(tau_a_100_1))][0]
+tau_max_a_100_2=tau_a_100_2[np.nonzero(tau_a_100_2==max(tau_a_100_2))][0]
+tau_max_a_100_3=tau_a_100_3[np.nonzero(tau_a_100_3==max(tau_a_100_3))][0]
+tau_max_a_050_1=tau_a_050_1[np.nonzero(tau_a_050_1==max(tau_a_050_1))][0]
+tau_max_a_050_2=tau_a_050_2[np.nonzero(tau_a_050_2==max(tau_a_050_2))][0]
+tau_max_a_050_3=tau_a_050_3[np.nonzero(tau_a_050_3==max(tau_a_050_3))][0]
+
+temp_max_a_150_1=temp_a_150_1[np.nonzero(tau_a_150_1==max(tau_a_150_1))][0]
+temp_max_a_150_2=temp_a_150_2[np.nonzero(tau_a_150_2==max(tau_a_150_2))][0]
+temp_max_a_150_3=temp_a_150_3[np.nonzero(tau_a_150_3==max(tau_a_150_3))][0]
+temp_max_a_100_1=temp_a_100_1[np.nonzero(tau_a_100_1==max(tau_a_100_1))][0]
+temp_max_a_100_2=temp_a_100_2[np.nonzero(tau_a_100_2==max(tau_a_100_2))][0]
+temp_max_a_100_3=temp_a_100_3[np.nonzero(tau_a_100_3==max(tau_a_100_3))][0]
+temp_max_a_050_1=temp_a_050_1[np.nonzero(tau_a_050_1==max(tau_a_050_1))][0]
+temp_max_a_050_2=temp_a_050_2[np.nonzero(tau_a_050_2==max(tau_a_050_2))][0]
+temp_max_a_050_3=temp_a_050_3[np.nonzero(tau_a_050_3==max(tau_a_050_3))][0]
+
+tau_max_b_150_1=tau_b_150_1[np.nonzero(tau_b_150_1==max(tau_b_150_1))][0]
+tau_max_b_150_2=tau_b_150_2[np.nonzero(tau_b_150_2==max(tau_b_150_2))][0]
+tau_max_b_150_3=tau_b_150_3[np.nonzero(tau_b_150_3==max(tau_b_150_3))][0]
+tau_max_b_100_1=tau_b_100_1[np.nonzero(tau_b_100_1==max(tau_b_100_1))][0]
+tau_max_b_100_2=tau_b_100_2[np.nonzero(tau_b_100_2==max(tau_b_100_2))][0]
+tau_max_b_100_3=tau_b_100_3[np.nonzero(tau_b_100_3==max(tau_b_100_3))][0]
+tau_max_b_050_1=tau_b_050_1[np.nonzero(tau_b_050_1==max(tau_b_050_1))][0]
+tau_max_b_050_2=tau_b_050_2[np.nonzero(tau_b_050_2==max(tau_b_050_2))][0]
+tau_max_b_050_3=tau_b_050_3[np.nonzero(tau_b_050_3==max(tau_b_050_3))][0]
+
+temp_max_b_150_1=temp_b_150_1[np.nonzero(tau_b_150_1==max(tau_b_150_1))][0]
+temp_max_b_150_2=temp_b_150_2[np.nonzero(tau_b_150_2==max(tau_b_150_2))][0]
+temp_max_b_150_3=temp_b_150_3[np.nonzero(tau_b_150_3==max(tau_b_150_3))][0]
+temp_max_b_100_1=temp_b_100_1[np.nonzero(tau_b_100_1==max(tau_b_100_1))][0]
+temp_max_b_100_2=temp_b_100_2[np.nonzero(tau_b_100_2==max(tau_b_100_2))][0]
+temp_max_b_100_3=temp_b_100_3[np.nonzero(tau_b_100_3==max(tau_b_100_3))][0]
+temp_max_b_050_1=temp_b_050_1[np.nonzero(tau_b_050_1==max(tau_b_050_1))][0]
+temp_max_b_050_2=temp_b_050_2[np.nonzero(tau_b_050_2==max(tau_b_050_2))][0]
+temp_max_b_050_3=temp_b_050_3[np.nonzero(tau_b_050_3==max(tau_b_050_3))][0]
+
+#%% Tau vs T
+fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+ax[0,0].plot(temp_a_150_1,tau_a_150_1)
+ax[0,0].plot(temp_a_150_2,tau_a_150_2)
+ax[0,0].plot(temp_a_150_3,tau_a_150_3)
+ax[0,0].scatter(temp_max_a_150_1,tau_max_a_150_1,marker='v',label=f'{tau_max_a_150_1:.1f} ns at {temp_max_a_150_1}°C')
+ax[0,0].scatter(temp_max_a_150_2,tau_max_a_150_2,marker='v',label=f'{tau_max_a_150_2:.1f} ns at {temp_max_a_150_2}°C')
+ax[0,0].scatter(temp_max_a_150_3,tau_max_a_150_3,marker='v',label=f'{tau_max_a_150_3:.1f} ns at {temp_max_a_150_3}°C')
+
+ax[0,1].plot(temp_b_150_1,tau_b_150_1)
+ax[0,1].plot(temp_b_150_2,tau_b_150_2)
+ax[0,1].plot(temp_b_150_3,tau_b_150_3)
+ax[0,1].scatter(temp_max_b_150_1,tau_max_b_150_1,marker='v',label=f'{tau_max_b_150_1:.1f} ns at {temp_max_b_150_1}°C')
+ax[0,1].scatter(temp_max_b_150_2,tau_max_b_150_2,marker='v',label=f'{tau_max_b_150_2:.1f} ns at {temp_max_b_150_2}°C')
+ax[0,1].scatter(temp_max_b_150_3,tau_max_b_150_3,marker='v',label=f'{tau_max_b_150_3:.1f} ns at {temp_max_b_150_3}°C')
+
+ax[1,0].plot(temp_a_100_1,tau_a_100_1)
+ax[1,0].plot(temp_a_100_2,tau_a_100_2)
+ax[1,0].plot(temp_a_100_3,tau_a_100_3)
+ax[1,0].scatter(temp_max_a_100_1,tau_max_a_100_1,marker='v',label=f'{tau_max_a_100_1:.1f} ns at {temp_max_a_100_1}°C')
+ax[1,0].scatter(temp_max_a_100_2,tau_max_a_100_2,marker='v',label=f'{tau_max_a_100_2:.1f} ns at {temp_max_a_100_2}°C')
+ax[1,0].scatter(temp_max_a_100_3,tau_max_a_100_3,marker='v',label=f'{tau_max_a_100_3:.1f} ns at {temp_max_a_100_3}°C')
+
+ax[1,1].plot(temp_b_100_1,tau_b_100_1)
+ax[1,1].plot(temp_b_100_2,tau_b_100_2)
+ax[1,1].plot(temp_b_100_3,tau_b_100_3)
+ax[1,1].scatter(temp_max_b_100_1,tau_max_b_100_1,marker='v',label=f'{tau_max_b_100_1:.1f} ns at {temp_max_b_100_1}°C')
+ax[1,1].scatter(temp_max_b_100_2,tau_max_b_100_2,marker='v',label=f'{tau_max_b_100_2:.1f} ns at {temp_max_b_100_2}°C')
+ax[1,1].scatter(temp_max_b_100_3,tau_max_b_100_3,marker='v',label=f'{tau_max_b_100_3:.1f} ns at {temp_max_b_100_3}°C')
+
+ax[2,0].plot(temp_a_050_1,tau_a_050_1,)
+ax[2,0].plot(temp_a_050_2,tau_a_050_2,)
+ax[2,0].plot(temp_a_050_3,tau_a_050_3,)
+ax[2,0].scatter(temp_max_a_050_1,tau_max_a_050_1,marker='v',label=f'{tau_max_a_050_1:.1f} ns at {temp_max_a_050_1}°C')
+ax[2,0].scatter(temp_max_a_050_2,tau_max_a_050_2,marker='v',label=f'{tau_max_a_050_2:.1f} ns at {temp_max_a_050_2}°C')
+ax[2,0].scatter(temp_max_a_050_3,tau_max_a_050_3,marker='v',label=f'{tau_max_a_050_3:.1f} ns at {temp_max_a_050_3}°C')
+
+ax[2,1].plot(temp_b_050_1,tau_b_050_1,)
+ax[2,1].plot(temp_b_050_2,tau_b_050_2,)
+ax[2,1].plot(temp_b_050_3,tau_b_050_3,)
+ax[2,1].scatter(temp_max_b_050_1,tau_max_b_050_1,marker='v',label=f'{tau_max_b_050_1:.1f} ns at {temp_max_b_050_1}°C')
+ax[2,1].scatter(temp_max_b_050_2,tau_max_b_050_2,marker='v',label=f'{tau_max_b_050_2:.1f} ns at {temp_max_b_050_2}°C')
+ax[2,1].scatter(temp_max_b_050_3,tau_max_b_050_3,marker='v',label=f'{tau_max_b_050_3:.1f} ns at {temp_max_b_050_3}°C')
+
+for a in ax:
+    for b in a:
+        b.grid()
+        b.legend(title=r'$\tau_{max}$',fontsize=9)
+        b.set_xlabel('T (°C)')
+for a in ax:
+    a[0].set_ylabel(r'$\tau$ (ns)')
+
+ax[0,0].set_title('57 kA/m',loc='left') 
+ax[0,1].set_title('57 kA/m',loc='left')
+ax[1,0].set_title('38 kA/m',loc='left') 
+ax[1,1].set_title('38 kA/m',loc='left')
+ax[2,0].set_title('20 kA/m',loc='left') 
+ax[2,1].set_title('20 kA/m',loc='left')
+
+fig.text(0.275, 0.92,dir_a+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
+fig.text(0.775, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
+plt.suptitle('NE5X cong s/ $H_{DC}^{\perp}$\n$\\tau$ vs Temperatura',fontsize=16)
 
 #%% Tiempos absoultos
 time_a_150_1 = np.array([(f-time_a_150_1[0]).total_seconds() for f in  time_a_150_1])
@@ -396,50 +1107,88 @@ time_a_100_3 = np.array([(f-time_a_100_3[0]).total_seconds() for f in  time_a_10
 time_a_050_1 = np.array([(f-time_a_050_1[0]).total_seconds() for f in  time_a_050_1])
 time_a_050_2 = np.array([(f-time_a_050_2[0]).total_seconds() for f in  time_a_050_2])
 time_a_050_3 = np.array([(f-time_a_050_3[0]).total_seconds() for f in  time_a_050_3])
-#%%
-time_c_150_1 -= time_c_150_1[0]
-time_c_150_2 -= time_c_150_2[0]
-time_c_150_3 -= time_c_150_3[0]
-time_c_100_1 -= time_c_100_1[0]
-time_c_100_2 -= time_c_100_2[0]
-time_c_100_3 -= time_c_100_3[0]
-time_c_050_1 -= time_c_050_1[0]
-time_c_050_2 -= time_c_050_2[0]
-time_c_050_3 -= time_c_050_3[0]
-#%%
-fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,8),constrained_layout=True,sharey='row',sharex='col')
-ax[0,0].plot(time_a_150_1,tau_a_150_1,label='1')
-ax[0,0].plot(time_a_150_2,tau_a_150_2,label='2')
-ax[0,0].plot(time_a_150_3,tau_a_150_3,label='3')
 
-ax[0,1].plot(time_c_150_1,tau_c_150_1,label='1')
-ax[0,1].plot(time_c_150_2,tau_c_150_2,label='2')
-ax[0,1].plot(time_c_150_3,tau_c_150_3,label='3')
+time_max_a_150_1=time_a_150_1[np.nonzero(tau_a_150_1==max(tau_a_150_1))][0]
+time_max_a_150_2=time_a_150_2[np.nonzero(tau_a_150_2==max(tau_a_150_2))][0]
+time_max_a_150_3=time_a_150_3[np.nonzero(tau_a_150_3==max(tau_a_150_3))][0]
+time_max_a_100_1=time_a_100_1[np.nonzero(tau_a_100_1==max(tau_a_100_1))][0]
+time_max_a_100_2=time_a_100_2[np.nonzero(tau_a_100_2==max(tau_a_100_2))][0]
+time_max_a_100_3=time_a_100_3[np.nonzero(tau_a_100_3==max(tau_a_100_3))][0]
+time_max_a_050_1=time_a_050_1[np.nonzero(tau_a_050_1==max(tau_a_050_1))][0]
+time_max_a_050_2=time_a_050_2[np.nonzero(tau_a_050_2==max(tau_a_050_2))][0]
+time_max_a_050_3=time_a_050_3[np.nonzero(tau_a_050_3==max(tau_a_050_3))][0]
 
-ax[1,0].plot(time_a_100_1,tau_a_100_1,label='1')
-ax[1,0].plot(time_a_100_2,tau_a_100_2,label='2')
-ax[1,0].plot(time_a_100_3,tau_a_100_3,label='3')
+time_b_150_1 = np.array([(f-time_b_150_1[0]).total_seconds() for f in  time_b_150_1])
+time_b_150_2 = np.array([(f-time_b_150_2[0]).total_seconds() for f in  time_b_150_2])
+time_b_150_3 = np.array([(f-time_b_150_3[0]).total_seconds() for f in  time_b_150_3])
+time_b_100_1 = np.array([(f-time_b_100_1[0]).total_seconds() for f in  time_b_100_1])
+time_b_100_2 = np.array([(f-time_b_100_2[0]).total_seconds() for f in  time_b_100_2])
+time_b_100_3 = np.array([(f-time_b_100_3[0]).total_seconds() for f in  time_b_100_3])
+time_b_050_1 = np.array([(f-time_b_050_1[0]).total_seconds() for f in  time_b_050_1])
+time_b_050_2 = np.array([(f-time_b_050_2[0]).total_seconds() for f in  time_b_050_2])
+time_b_050_3 = np.array([(f-time_b_050_3[0]).total_seconds() for f in  time_b_050_3])
 
-ax[1,1].plot(time_c_100_1,tau_c_100_1,label='1')
-ax[1,1].plot(time_c_100_2,tau_c_100_2,label='2')
-ax[1,1].plot(time_c_100_3,tau_c_100_3,label='3')
+time_max_b_150_1=time_b_150_1[np.nonzero(tau_b_150_1==max(tau_b_150_1))][0]
+time_max_b_150_2=time_b_150_2[np.nonzero(tau_b_150_2==max(tau_b_150_2))][0]
+time_max_b_150_3=time_b_150_3[np.nonzero(tau_b_150_3==max(tau_b_150_3))][0]
+time_max_b_100_1=time_b_100_1[np.nonzero(tau_b_100_1==max(tau_b_100_1))][0]
+time_max_b_100_2=time_b_100_2[np.nonzero(tau_b_100_2==max(tau_b_100_2))][0]
+time_max_b_100_3=time_b_100_3[np.nonzero(tau_b_100_3==max(tau_b_100_3))][0]
+time_max_b_050_1=time_b_050_1[np.nonzero(tau_b_050_1==max(tau_b_050_1))][0]
+time_max_b_050_2=time_b_050_2[np.nonzero(tau_b_050_2==max(tau_b_050_2))][0]
+time_max_b_050_3=time_b_050_3[np.nonzero(tau_b_050_3==max(tau_b_050_3))][0]
 
-ax[2,0].plot(time_a_050_1,tau_a_050_1,label='1')
-ax[2,0].plot(time_a_050_2,tau_a_050_2,label='2')
-ax[2,0].plot(time_a_050_3,tau_a_050_3,label='3')
+#%% Tau vs tiempo
+fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+ax[0,0].plot(time_a_150_1,tau_a_150_1)
+ax[0,0].plot(time_a_150_2,tau_a_150_2)
+ax[0,0].plot(time_a_150_3,tau_a_150_3)
+ax[0,0].scatter(time_max_a_150_1,tau_max_a_150_1,marker='X',label=f'{tau_max_a_150_1:.1f} ns at {time_max_a_150_1:.1f} s')
+ax[0,0].scatter(time_max_a_150_2,tau_max_a_150_2,marker='X',label=f'{tau_max_a_150_2:.1f} ns at {time_max_a_150_2:.1f} s')
+ax[0,0].scatter(time_max_a_150_3,tau_max_a_150_3,marker='X',label=f'{tau_max_a_150_3:.1f} ns at {time_max_a_150_3:.1f} s')
 
-ax[2,1].plot(time_c_050_1,tau_c_050_1,label='1')
-ax[2,1].plot(time_c_050_2,tau_c_050_2,label='2')
-ax[2,1].plot(time_c_050_3,tau_c_050_3,label='3')
+ax[0,1].plot(time_b_150_1,tau_b_150_1)
+ax[0,1].plot(time_b_150_2,tau_b_150_2)
+ax[0,1].plot(time_b_150_3,tau_b_150_3)
+ax[0,1].scatter(time_max_b_150_1,tau_max_b_150_1,marker='X',label=f'{tau_max_b_150_1:.1f} ns at {time_max_b_150_1:.1f} s')
+ax[0,1].scatter(time_max_b_150_2,tau_max_b_150_2,marker='X',label=f'{tau_max_b_150_2:.1f} ns at {time_max_b_150_2:.1f} s')
+ax[0,1].scatter(time_max_b_150_3,tau_max_b_150_3,marker='X',label=f'{tau_max_b_150_3:.1f} ns at {time_max_b_150_3:.1f} s')
+
+ax[1,0].plot(time_a_100_1,tau_a_100_1)
+ax[1,0].plot(time_a_100_2,tau_a_100_2)
+ax[1,0].plot(time_a_100_3,tau_a_100_3)
+ax[1,0].scatter(time_max_a_100_1,tau_max_a_100_1,marker='X',label=f'{tau_max_a_100_1:.1f} ns at {time_max_a_100_1:.1f} s')
+ax[1,0].scatter(time_max_a_100_2,tau_max_a_100_2,marker='X',label=f'{tau_max_a_100_2:.1f} ns at {time_max_a_100_2:.1f} s')
+ax[1,0].scatter(time_max_a_100_3,tau_max_a_100_3,marker='X',label=f'{tau_max_a_100_3:.1f} ns at {time_max_a_100_3:.1f} s')
+
+ax[1,1].plot(time_b_100_1,tau_b_100_1)
+ax[1,1].plot(time_b_100_2,tau_b_100_2)
+ax[1,1].plot(time_b_100_3,tau_b_100_3)
+ax[1,1].scatter(time_max_b_100_1,tau_max_b_100_1,marker='X',label=f'{tau_max_b_100_1:.1f} ns at {time_max_b_100_1:.1f} s')
+ax[1,1].scatter(time_max_b_100_2,tau_max_b_100_2,marker='X',label=f'{tau_max_b_100_2:.1f} ns at {time_max_b_100_2:.1f} s')
+ax[1,1].scatter(time_max_b_100_3,tau_max_b_100_3,marker='X',label=f'{tau_max_b_100_3:.1f} ns at {time_max_b_100_3:.1f} s')
+
+ax[2,0].plot(time_a_050_1,tau_a_050_1,)
+ax[2,0].plot(time_a_050_2,tau_a_050_2,)
+ax[2,0].plot(time_a_050_3,tau_a_050_3,)
+ax[2,0].scatter(time_max_a_050_1,tau_max_a_050_1,marker='X',label=f'{tau_max_a_050_1:.1f} ns at {time_max_a_050_1:.1f} s')
+ax[2,0].scatter(time_max_a_050_2,tau_max_a_050_2,marker='X',label=f'{tau_max_a_050_2:.1f} ns at {time_max_a_050_2:.1f} s')
+ax[2,0].scatter(time_max_a_050_3,tau_max_a_050_3,marker='X',label=f'{tau_max_a_050_3:.1f} ns at {time_max_a_050_3:.1f} s')
+
+ax[2,1].plot(time_b_050_1,tau_b_050_1,)
+ax[2,1].plot(time_b_050_2,tau_b_050_2,)
+ax[2,1].plot(time_b_050_3,tau_b_050_3,)
+ax[2,1].scatter(time_max_b_050_1,tau_max_b_050_1,marker='X',label=f'{tau_max_b_050_1:.1f} ns at {time_max_b_050_1:.1f} s')
+ax[2,1].scatter(time_max_b_050_2,tau_max_b_050_2,marker='X',label=f'{tau_max_b_050_2:.1f} ns at {time_max_b_050_2:.1f} s')
+ax[2,1].scatter(time_max_b_050_3,tau_max_b_050_3,marker='X',label=f'{tau_max_b_050_3:.1f} ns at {time_max_b_050_3:.1f} s')
 
 for a in ax:
     for b in a:
         b.grid()
-        b.legend()
+        b.legend(title=r'$\tau_{max}$',fontsize=9)
+        b.set_xlabel('t (s)')
 for a in ax:
     a[0].set_ylabel(r'$\tau$ (ns)')   
-ax[2,0].set_xlabel('t (s)')   
-ax[2,1].set_xlabel('t (s)')    
 
 ax[0,0].set_title('57 kA/m',loc='left') 
 ax[0,1].set_title('57 kA/m',loc='left')
@@ -448,7 +1197,72 @@ ax[1,1].set_title('38 kA/m',loc='left')
 ax[2,0].set_title('20 kA/m',loc='left') 
 ax[2,1].set_title('20 kA/m',loc='left')
 
-fig.text(0.275, 0.92,dir_a, ha='center',fontsize=13)
-fig.text(0.775, 0.92,dir_c, ha='center',fontsize=13)
-plt.suptitle('NE5X cong s/campo\n $\\tau$ vs t',fontsize=16)
+fig.text(0.275, 0.92,dir_a+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
+fig.text(0.775, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
+plt.suptitle('NE5X cong s/ $H_{DC}^{\perp}$\n$\\tau$ vs tiempo',fontsize=16)
+
+#%% Templogs
+fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+ax[0,0].plot(time_a_150_1,temp_a_150_1)
+ax[0,0].plot(time_a_150_2,temp_a_150_2)
+ax[0,0].plot(time_a_150_3,temp_a_150_3)
+ax[0,0].scatter(time_max_a_150_1,temp_max_a_150_1,marker='X',label=f'{tau_max_a_150_1:.1f} ns at {time_max_a_150_1:.1f} s')
+ax[0,0].scatter(time_max_a_150_2,temp_max_a_150_2,marker='X',label=f'{tau_max_a_150_2:.1f} ns at {time_max_a_150_2:.1f} s')
+ax[0,0].scatter(time_max_a_150_3,temp_max_a_150_3,marker='X',label=f'{tau_max_a_150_3:.1f} ns at {time_max_a_150_3:.1f} s')
+
+ax[0,1].plot(time_b_150_1,temp_b_150_1)
+ax[0,1].plot(time_b_150_2,temp_b_150_2)
+ax[0,1].plot(time_b_150_3,temp_b_150_3)
+ax[0,1].scatter(time_max_b_150_1,temp_max_b_150_1,marker='X',label=f'{tau_max_b_150_1:.1f} ns at {time_max_b_150_1:.1f} s')
+ax[0,1].scatter(time_max_b_150_2,temp_max_b_150_2,marker='X',label=f'{tau_max_b_150_2:.1f} ns at {time_max_b_150_2:.1f} s')
+ax[0,1].scatter(time_max_b_150_3,temp_max_b_150_3,marker='X',label=f'{tau_max_b_150_3:.1f} ns at {time_max_b_150_3:.1f} s')
+
+ax[1,0].plot(time_a_100_1,temp_a_100_1)
+ax[1,0].plot(time_a_100_2,temp_a_100_2)
+ax[1,0].plot(time_a_100_3,temp_a_100_3)
+ax[1,0].scatter(time_max_a_100_1,temp_max_a_100_1,marker='X',label=f'{tau_max_a_100_1:.1f} ns at {time_max_a_100_1:.1f} s')
+ax[1,0].scatter(time_max_a_100_2,temp_max_a_100_2,marker='X',label=f'{tau_max_a_100_2:.1f} ns at {time_max_a_100_2:.1f} s')
+ax[1,0].scatter(time_max_a_100_3,temp_max_a_100_3,marker='X',label=f'{tau_max_a_100_3:.1f} ns at {time_max_a_100_3:.1f} s')
+
+ax[1,1].plot(time_b_100_1,temp_b_100_1)
+ax[1,1].plot(time_b_100_2,temp_b_100_2)
+ax[1,1].plot(time_b_100_3,temp_b_100_3)
+ax[1,1].scatter(time_max_b_100_1,temp_max_b_100_1,marker='X',label=f'{tau_max_b_100_1:.1f} ns at {time_max_b_100_1:.1f} s')
+ax[1,1].scatter(time_max_b_100_2,temp_max_b_100_2,marker='X',label=f'{tau_max_b_100_2:.1f} ns at {time_max_b_100_2:.1f} s')
+ax[1,1].scatter(time_max_b_100_3,temp_max_b_100_3,marker='X',label=f'{tau_max_b_100_3:.1f} ns at {time_max_b_100_3:.1f} s')
+
+ax[2,0].plot(time_a_050_1,temp_a_050_1,)
+ax[2,0].plot(time_a_050_2,temp_a_050_2,)
+ax[2,0].plot(time_a_050_3,temp_a_050_3,)
+ax[2,0].scatter(time_max_a_050_1,temp_max_a_050_1,marker='X',label=f'{tau_max_a_050_1:.1f} ns at {time_max_a_050_1:.1f} s')
+ax[2,0].scatter(time_max_a_050_2,temp_max_a_050_2,marker='X',label=f'{tau_max_a_050_2:.1f} ns at {time_max_a_050_2:.1f} s')
+ax[2,0].scatter(time_max_a_050_3,temp_max_a_050_3,marker='X',label=f'{tau_max_a_050_3:.1f} ns at {time_max_a_050_3:.1f} s')
+
+ax[2,1].plot(time_b_050_1,temp_b_050_1,)
+ax[2,1].plot(time_b_050_2,temp_b_050_2,)
+ax[2,1].plot(time_b_050_3,temp_b_050_3,)
+ax[2,1].scatter(time_max_b_050_1,temp_max_b_050_1,marker='X',label=f'{tau_max_b_050_1:.1f} ns at {time_max_b_050_1:.1f} s')
+ax[2,1].scatter(time_max_b_050_2,temp_max_b_050_2,marker='X',label=f'{tau_max_b_050_2:.1f} ns at {time_max_b_050_2:.1f} s')
+ax[2,1].scatter(time_max_b_050_3,temp_max_b_050_3,marker='X',label=f'{tau_max_b_050_3:.1f} ns at {time_max_b_050_3:.1f} s')
+
+for a in ax:
+    for b in a:
+        b.grid()
+        b.legend(title=r'$\tau_{max}$',fontsize=10)
+        b.set_xlabel('t (s)')    
+        
+for a in ax:
+    a[0].set_ylabel(r'$\tau$ (ns)')   
+
+ax[0,0].set_title('57 kA/m',loc='left') 
+ax[0,1].set_title('57 kA/m',loc='left')
+ax[1,0].set_title('38 kA/m',loc='left') 
+ax[1,1].set_title('38 kA/m',loc='left')
+ax[2,0].set_title('20 kA/m',loc='left') 
+ax[2,1].set_title('20 kA/m',loc='left')
+
+fig.text(0.275, 0.92,dir_a+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
+fig.text(0.775, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
+plt.suptitle('NE5X cong s/ $H_{DC}$\nTemperatura vs tiempo',fontsize=16)
+
 
