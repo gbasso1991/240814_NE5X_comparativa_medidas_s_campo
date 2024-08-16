@@ -378,7 +378,7 @@ temp_max_c_050_2=temp_c_050_2[np.nonzero(tau_c_050_2==max(tau_c_050_2))][0]
 temp_max_c_050_3=temp_c_050_3[np.nonzero(tau_c_050_3==max(tau_c_050_3))][0]
 
 #%% Tau vs T
-fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+fig0, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
 ax[0,0].plot(temp_a_150_1,tau_a_150_1)
 ax[0,0].plot(temp_a_150_2,tau_a_150_2)
 ax[0,0].plot(temp_a_150_3,tau_a_150_3)
@@ -436,10 +436,10 @@ ax[1,1].set_title('38 kA/m',loc='left')
 ax[2,0].set_title('20 kA/m',loc='left') 
 ax[2,1].set_title('20 kA/m',loc='left')
 
-fig.text(0.275, 0.92,dir_a, ha='center',fontsize=13)
-fig.text(0.775, 0.92,dir_c, ha='center',fontsize=13)
+fig0.text(0.275, 0.92,dir_a, ha='center',fontsize=13)
+fig0.text(0.775, 0.92,dir_c, ha='center',fontsize=13)
 plt.suptitle('NE5X cong s/ $H_{DC}^{\perp}$\n$\\tau$ vs Temperatura',fontsize=16)
-
+plt.savefig('tau_vs_Temp_a_c.png',dpi=300)
 #% Tiempos absoultos
 time_a_150_1 = np.array([(f-time_a_150_1[0]).total_seconds() for f in  time_a_150_1])
 time_a_150_2 = np.array([(f-time_a_150_2[0]).total_seconds() for f in  time_a_150_2])
@@ -483,7 +483,7 @@ time_max_c_050_2=time_c_050_2[np.nonzero(tau_c_050_2==max(tau_c_050_2))][0]
 time_max_c_050_3=time_c_050_3[np.nonzero(tau_c_050_3==max(tau_c_050_3))][0]
 
 #%% Tau vs tiempo
-fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+fig1,ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
 ax[0,0].plot(time_a_150_1,tau_a_150_1)
 ax[0,0].plot(time_a_150_2,tau_a_150_2)
 ax[0,0].plot(time_a_150_3,tau_a_150_3)
@@ -541,12 +541,12 @@ ax[1,1].set_title('38 kA/m',loc='left')
 ax[2,0].set_title('20 kA/m',loc='left') 
 ax[2,1].set_title('20 kA/m',loc='left')
 
-fig.text(0.275, 0.92,dir_a, ha='center',fontsize=13)
-fig.text(0.775, 0.92,dir_c, ha='center',fontsize=13)
+fig1.text(0.275, 0.92,dir_a, ha='center',fontsize=13)
+fig1.text(0.775, 0.92,dir_c, ha='center',fontsize=13)
 plt.suptitle('NE5X cong s/ $H_{DC}^{\perp}$\n$\\tau$ vs tiempo',fontsize=16)
-
+plt.savefig('tau_vs_time_a_c.png',dpi=300)
 #%% Templogs
-fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+fig2, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
 ax[0,0].plot(time_a_150_1,temp_a_150_1)
 ax[0,0].plot(time_a_150_2,temp_a_150_2)
 ax[0,0].plot(time_a_150_3,temp_a_150_3)
@@ -605,10 +605,10 @@ ax[1,1].set_title('38 kA/m',loc='left')
 ax[2,0].set_title('20 kA/m',loc='left') 
 ax[2,1].set_title('20 kA/m',loc='left')
 
-fig.text(0.275, 0.92,dir_a, ha='center',fontsize=13)
-fig.text(0.775, 0.92,dir_c, ha='center',fontsize=13)
+fig2.text(0.275, 0.92,dir_a, ha='center',fontsize=13)
+fig2.text(0.775, 0.92,dir_c, ha='center',fontsize=13)
 plt.suptitle('NE5X cong s/ $H_{DC}^{\perp}$\nTemperatura vs tiempo',fontsize=16)
-
+plt.savefig('Temp_vs_time.png',dpi=300)
 #%% (b) vs (c): 135 kHz  descong sin/con campo DC - distintas fechas %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 dir_b= 'b - 04-Jul - 135 kHz'
 files_b_150 = glob(os.path.join(dir_b, '*150dA*'))
@@ -706,7 +706,7 @@ temp_max_c_050_2=temp_c_050_2[np.nonzero(tau_c_050_2==max(tau_c_050_2))][0]
 temp_max_c_050_3=temp_c_050_3[np.nonzero(tau_c_050_3==max(tau_c_050_3))][0]
 
 #%% Tau vs T 
-fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+fig3, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
 ax[0,0].plot(temp_b_150_1,tau_b_150_1)
 ax[0,0].plot(temp_b_150_2,tau_b_150_2)
 ax[0,0].plot(temp_b_150_3,tau_b_150_3)
@@ -764,9 +764,10 @@ ax[1,1].set_title('38 kA/m',loc='left')
 ax[2,0].set_title('20 kA/m',loc='left') 
 ax[2,1].set_title('20 kA/m',loc='left')
 
-fig.text(0.275, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
-fig.text(0.775, 0.92,dir_c+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
+fig3.text(0.275, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
+fig3.text(0.775, 0.92,dir_c+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
 plt.suptitle('NE5X cong s/c $H_{DC}$\n$\\tau$ vs Temperatura',fontsize=16)
+plt.savefig('tau_vs_Temp_b_c.png',dpi=300)
 #% Tiempos absoultos
 time_b_150_1 = np.array([(f-time_b_150_1[0]).total_seconds() for f in  time_b_150_1])
 time_b_150_2 = np.array([(f-time_b_150_2[0]).total_seconds() for f in  time_b_150_2])
@@ -810,7 +811,7 @@ time_max_c_050_2=time_c_050_2[np.nonzero(tau_c_050_2==max(tau_c_050_2))][0]
 time_max_c_050_3=time_c_050_3[np.nonzero(tau_c_050_3==max(tau_c_050_3))][0]
 
 #%% Tau vs tiempo
-fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+fig4, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
 ax[0,0].plot(time_b_150_1,tau_b_150_1)
 ax[0,0].plot(time_b_150_2,tau_b_150_2)
 ax[0,0].plot(time_b_150_3,tau_b_150_3)
@@ -868,12 +869,12 @@ ax[1,1].set_title('38 kA/m',loc='left')
 ax[2,0].set_title('20 kA/m',loc='left') 
 ax[2,1].set_title('20 kA/m',loc='left')
 
-fig.text(0.275, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
-fig.text(0.775, 0.92,dir_c+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
+fig4.text(0.275, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
+fig4.text(0.775, 0.92,dir_c+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
 plt.suptitle('NE5X cong s/c $H_{DC}$\n $\\tau$ vs tiempo',fontsize=16)
-
+plt.savefig('tau_vs_time_b_c.png',dpi=300)
 #%% Templogs
-fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+fig5, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
 ax[0,0].plot(time_b_150_1,temp_b_150_1)
 ax[0,0].plot(time_b_150_2,temp_b_150_2)
 ax[0,0].plot(time_b_150_3,temp_b_150_3)
@@ -932,10 +933,10 @@ ax[1,1].set_title('38 kA/m',loc='left')
 ax[2,0].set_title('20 kA/m',loc='left') 
 ax[2,1].set_title('20 kA/m',loc='left')
 
-fig.text(0.275, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
-fig.text(0.775, 0.92,dir_c+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
+fig5.text(0.275, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
+fig5.text(0.775, 0.92,dir_c+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=12)
 plt.suptitle('NE5X cong s/c $H_{DC}$\nTemperatura vs tiempo',fontsize=16)
-
+plt.savefig('Temp_vs_time_b_c.png',dpi=300)
 
 #%% (a) vs (b): 265 kHz sin/con campo DC - distintas fechas  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1035,7 +1036,7 @@ temp_max_b_050_2=temp_b_050_2[np.nonzero(tau_b_050_2==max(tau_b_050_2))][0]
 temp_max_b_050_3=temp_b_050_3[np.nonzero(tau_b_050_3==max(tau_b_050_3))][0]
 
 #%% Tau vs T
-fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+fig6, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
 ax[0,0].plot(temp_a_150_1,tau_a_150_1)
 ax[0,0].plot(temp_a_150_2,tau_a_150_2)
 ax[0,0].plot(temp_a_150_3,tau_a_150_3)
@@ -1093,10 +1094,10 @@ ax[1,1].set_title('38 kA/m',loc='left')
 ax[2,0].set_title('20 kA/m',loc='left') 
 ax[2,1].set_title('20 kA/m',loc='left')
 
-fig.text(0.275, 0.92,dir_a+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
-fig.text(0.775, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
+fig6.text(0.275, 0.92,dir_a+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
+fig6.text(0.775, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
 plt.suptitle('NE5X cong s/ $H_{DC}^{\perp}$\n$\\tau$ vs Temperatura',fontsize=16)
-
+plt.savefig('tau_vs_Temp_a_b.png',dpi=300)
 #%% Tiempos absoultos
 time_a_150_1 = np.array([(f-time_a_150_1[0]).total_seconds() for f in  time_a_150_1])
 time_a_150_2 = np.array([(f-time_a_150_2[0]).total_seconds() for f in  time_a_150_2])
@@ -1139,7 +1140,7 @@ time_max_b_050_2=time_b_050_2[np.nonzero(tau_b_050_2==max(tau_b_050_2))][0]
 time_max_b_050_3=time_b_050_3[np.nonzero(tau_b_050_3==max(tau_b_050_3))][0]
 
 #%% Tau vs tiempo
-fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+fig7, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
 ax[0,0].plot(time_a_150_1,tau_a_150_1)
 ax[0,0].plot(time_a_150_2,tau_a_150_2)
 ax[0,0].plot(time_a_150_3,tau_a_150_3)
@@ -1197,12 +1198,12 @@ ax[1,1].set_title('38 kA/m',loc='left')
 ax[2,0].set_title('20 kA/m',loc='left') 
 ax[2,1].set_title('20 kA/m',loc='left')
 
-fig.text(0.275, 0.92,dir_a+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
-fig.text(0.775, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
+fig7.text(0.275, 0.92,dir_a+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
+fig7.text(0.775, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
 plt.suptitle('NE5X cong s/ $H_{DC}^{\perp}$\n$\\tau$ vs tiempo',fontsize=16)
-
+plt.savefig('tau_vs_time_a_b.png',dpi=300)
 #%% Templogs
-fig, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
+fig8, ax = plt.subplots(ncols=2,nrows=3,figsize=(10,9),constrained_layout=True,sharey='row',sharex='row')
 ax[0,0].plot(time_a_150_1,temp_a_150_1)
 ax[0,0].plot(time_a_150_2,temp_a_150_2)
 ax[0,0].plot(time_a_150_3,temp_a_150_3)
@@ -1261,8 +1262,8 @@ ax[1,1].set_title('38 kA/m',loc='left')
 ax[2,0].set_title('20 kA/m',loc='left') 
 ax[2,1].set_title('20 kA/m',loc='left')
 
-fig.text(0.275, 0.92,dir_a+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
-fig.text(0.775, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
+fig8.text(0.275, 0.92,dir_a+' - s/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
+fig8.text(0.775, 0.92,dir_b+' - c/ $H_{DC}^{\perp}$', ha='center',fontsize=13)
 plt.suptitle('NE5X cong s/ $H_{DC}$\nTemperatura vs tiempo',fontsize=16)
-
+plt.savefig('Temp_vs_time_a_b.png',dpi=300)
 
